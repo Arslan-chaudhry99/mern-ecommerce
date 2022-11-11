@@ -476,8 +476,10 @@ textarea.input {
 }
 
 .header-search form .input {
-  width: calc(100% - 260px);
+  width: calc(100% - 100px);
   margin-right: -4px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .header-search form .search-btn {
@@ -871,7 +873,7 @@ textarea.input {
 }
 
 .product .product-img>img {
-  width: 100%;
+  width: 90%;
 }
 
 .product .product-img .product-label {
@@ -919,6 +921,7 @@ textarea.input {
 
 .product .product-body .product-name>a {
   font-weight: 700;
+  font-size: 11px;
 }
 
 .product .product-body .product-name>a:hover, .product .product-body .product-name>a:focus {
@@ -1037,9 +1040,10 @@ textarea.input {
 }
 
 .product  .add-to-cart-btn {
+  
   position: relative;
   border: 0;
-  height: 40px;
+  height: 30px;
   padding: 0 10px;
   background-color: #17a2b8;
   color: #FFF;
@@ -1111,11 +1115,11 @@ textarea.input {
 
 .product-widget .product-body .product-name {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 3px;
 }
 
 .product-widget .product-body .product-name>a {
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .product-widget .product-body .product-name>a:hover, .product-widget .product-body .product-name>a:focus {

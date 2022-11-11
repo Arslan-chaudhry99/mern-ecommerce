@@ -11,6 +11,9 @@ import Contact from "./components/Contact";
 import FQR from "./components/Fqr.JS";
 import Signup from "./Authentication/Signup";
 import Login from "./Authentication/Login";
+import Cart from "./components/Cart";
+import Profile from "./components/Profile";
+import Fav from "./components/Fav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
             <Route path="/contact" element={<Contact/>} />
             <Route path="/Signup" element={<Signup/>} />
             <Route path="/Login" element={<Login/>} />
+            <Route path="/Cart" element={<Cart/>} />
+            <Route path="/Profile" element={<Profile/>} />
+            <Route path="/wishlist" element={<Fav/>} />
           </Route>
 
         </Routes>
