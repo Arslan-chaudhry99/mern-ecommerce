@@ -2,6 +2,7 @@ import React from "react";
 import SignupBt from "./SignupBt";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import "./css/Mainpage.css";
 const Main = () => {
   const responsive = {
     superLargeDesktop: {
@@ -25,7 +26,7 @@ const Main = () => {
   let arr = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
   return (
     <>
-      <Carousel responsive={responsive} className="container">
+      <Carousel responsive={responsive} className="container" >
         {arr.map(() => {
           return (
             <>
@@ -33,11 +34,21 @@ const Main = () => {
                 <div class="product-img">
                   <i class="fa fa-heart-o"></i>
                   <span className="CartTagLine">new</span>
-                  <img src="./img/product04.png" alt="" />
+                  <img src="./img/product07.png" alt="" />
+                </div>
+                <div className="text-info reviewsForCard">
+                  <span className="product-rating">
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star-o"></i>
+                    <a className="review-link">(10)</a>
+                  </span>
                 </div>
                 <div class="product-body">
                   <h3 class="product-name">
-                    <a>product name goes here</a>
+                    <a>Nokia S10</a>
                   </h3>
                   <h4 class="product-price">
                     $980.00{" "}

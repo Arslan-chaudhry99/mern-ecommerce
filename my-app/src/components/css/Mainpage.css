@@ -1,0 +1,9 @@
+.reviewsForCard {
+  width: 100%;
+  color: red;
+  position: relative;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

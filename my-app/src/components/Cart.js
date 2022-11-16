@@ -19,7 +19,7 @@ const Cart = () => {
         <hr />
       </div>
 
-      <div className="container cartCheckoutSection" style={{marginBottom:"20px"}}>
+      {/* <div className="container cartCheckoutSection" style={{marginBottom:"20px"}}>
         <div style={{float:"right",marginRight:"5%",display:"flex", alignItems:"center",flexDirection:"column"}} >
           <dir>
             <strong>Delivery Charges: </strong>100$
@@ -35,7 +35,7 @@ const Cart = () => {
           </dir>
           <button className="btn-warning">Check Out</button>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

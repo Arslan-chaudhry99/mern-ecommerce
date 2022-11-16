@@ -921,7 +921,7 @@ textarea.input {
 
 .product .product-body .product-name>a {
   font-weight: 700;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .product .product-body .product-name>a:hover, .product .product-body .product-name>a:focus {
@@ -955,7 +955,8 @@ textarea.input {
 }
 
 .product .product-body .product-rating>i.fa-star {
-  color: #17a2b8;
+  /* color: #17a2b8; */
+  color: red;
 }
 
 .product .product-body .product-rating:after {
@@ -1615,13 +1616,11 @@ textarea.input {
 	 Product tab
 \*----------------------------*/
 
-#product-tab {
-  margin-top: 60px;
-}
+
 
 #product-tab .tab-nav {
   position: relative;
-  text-align: center;
+  /* text-align: center; */
   padding: 15px 0px;
   margin-bottom: 30px;
 }

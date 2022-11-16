@@ -145,6 +145,23 @@ button.social-signin.twitter {
 button.social-signin.google {
   background: #DD4B39;
 }
+.userImages{
+  width: 60px;
+  height: 60px;
+  /* background-color: red; */
+  position: absolute;
+  right: 10%;
+  border-radius: 50%;
+  top: 5%;
+  
+}
+.userImages img{
+  position: relative;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 @media only screen and (max-width: 480px) {
   #login-box{
     width: 100%;
