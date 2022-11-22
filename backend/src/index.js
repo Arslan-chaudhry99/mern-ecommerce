@@ -9,6 +9,8 @@ app.use(express.json());
 const PORT = process.env.PORT;
 
 app.use(require("./routers/signup"));
+app.use(require("./routers/Post"));
+app.use(express.urlencoded({ extended: true }));
 
 app.listen(PORT, () => {
   console.log("running on 5000");

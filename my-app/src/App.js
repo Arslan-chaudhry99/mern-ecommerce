@@ -15,6 +15,7 @@ import Cart from "./components/Cart";
 import Profile from "./components/Profile";
 import Fav from "./components/Fav";
 import Editor from "./components/Editor";
+import Preview from "./components/Preview";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/Product" element={<Product />} />
           </Route>
           <Route path="/Editor" element={<Editor />} />
+          <Route path="/Preview" element={<Preview />} />
         </Routes>
       </BrowserRouter>
     </>

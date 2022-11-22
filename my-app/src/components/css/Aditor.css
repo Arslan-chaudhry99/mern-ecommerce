@@ -40,3 +40,8 @@
            background-color:#17a2b8 ;
 
 }
+.imagesTagesFor{
+  display: flex;
+  height: 200px;
+  overflow-x: scroll;
+}
