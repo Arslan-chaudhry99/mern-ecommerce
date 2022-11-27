@@ -33,12 +33,13 @@ var upload = multer({
   },
 });
 
-router.route("/add").post(upload.array("images", 12), (req, res) => {
+router.route("/createPost").post(upload.array("images", 20), (req, res) => {
   const reqFiles = [];
   const url = req.protocol + "://" + req.get("host");
   for (var i = 0; i < req.files.length; i++) {
     reqFiles.push(url + "/public/" + req.files[i].filename);
   }
+
   const {
     ProductName,
     CardSlot,
@@ -84,7 +85,6 @@ router.route("/add").post(upload.array("images", 12), (req, res) => {
     DarazLink,
     AmazonLink,
     PticeoyeLink,
-    images,
     YoutubeLink,
   } = req.body;
 
@@ -133,7 +133,7 @@ router.route("/add").post(upload.array("images", 12), (req, res) => {
     DarazLink,
     AmazonLink,
     PticeoyeLink,
-    images,
+    images: reqFiles,
     YoutubeLink,
   };
   const newPost = new Data(newPostData);

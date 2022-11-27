@@ -52,7 +52,7 @@ const Editor = () => {
     images: "",
     YoutubeLink: "",
   });
-  console.log(PostData);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -103,13 +103,13 @@ const Editor = () => {
     formData.append("AmazonLink", PostData.AmazonLink);
     formData.append("PticeoyeLink", PostData.PticeoyeLink);
     formData.append("YoutubeLink", PostData.YoutubeLink);
-    console.log(formData);
+
     for (let i = 0; i < PostData.images.length; i++) {
       formData.append("images", PostData.images[i]);
     }
-    console.log(formData);
+
     axios
-      .post("/add", formData)
+      .post("/createPost", formData)
       .then((res) => {
         console.log(res);
       })
@@ -121,6 +121,10 @@ const Editor = () => {
   const handleChange = (e) => {
     setPostData({ ...PostData, [e.target.name]: e.target.value });
   };
+  const actuallPhotos = [];
+  for (const iterator of PostData.images) {
+    actuallPhotos.push(iterator.name);
+  }
 
   const handlePhoto = (e) => {
     setPostData({ ...PostData, images: e.target.files });
@@ -128,7 +132,7 @@ const Editor = () => {
 
   return (
     <>
-      <div className="col-md-12">
+      <div className="col-md-12" style={{marginBottom:"100px"}}>
         <div id="product-tab">
           <form onSubmit={handleSubmit} encType="multipart/form-data">
             <input
@@ -502,6 +506,15 @@ const Editor = () => {
               onChange={handlePhoto}
               multiple
             />
+            <div className="displayingItems">
+              {actuallPhotos.map((data) => {
+                return <>
+                 <div className="actualItemsDetails">{data}</div>
+                </>
+                
+              })}
+             
+            </div>
             <input type="submit" />
           </form>
         </div>
