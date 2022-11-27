@@ -5,106 +5,105 @@ import axios from "axios";
 
 const Editor = () => {
   const [PostData, setPostData] = useState({
-    Product_Name: "",
-    Card_Slot: "",
-    Internal_Memory: "",
+    ProductName: "",
+    CardSlot: "",
+    InternalMemory: "",
     Technology: "",
     G2Bands: "",
     G3Bands: "",
     G4Bands: "",
-    Network_Speed: "",
-    Announced_Date: "",
+    NetworkSpeed: "",
+    AnnouncedDate: "",
     Status: "",
     Dimensions: "",
     Weight: "",
     Sim: "",
-    Others_Body: "",
-    Display_Size: "",
-    Display_Type: "",
-    Display_Resolution: "",
-    Display_Protection: "",
+    OthersBody: "",
+    DisplaySize: "",
+    DisplayType: "",
+    DisplayResolution: "",
+    DisplayProtection: "",
     OS: "",
     Chipset: "",
     CPU: "",
     GPU: "",
-    Primary_Camera: "",
-    Secondary_Camera: "",
-    Camera_Features: "",
-    Camera_Video: "",
-    Camera_Others: "",
-    Loud_Speaker: "",
-    jack_Sound: "",
-    Comms_Wlan: "",
-    Comms_Bluetooth: "",
-    Comms_GPS: "",
-    Comms_NFC: "",
-    Comms_Radio: "",
-    Comms_Usb: "",
+    PrimaryCamera: "",
+    SecondaryCamera: "",
+    CameraFeatures: "",
+    CameraVideo: "",
+    CameraOthers: "",
+    LoudSpeaker: "",
+    jackSound: "",
+    CommsWlan: "",
+    CommsBluetooth: "",
+    CommsGPS: "",
+    CommsNFC: "",
+    CommsRadio: "",
+    CommsUsb: "",
     Sensors: "",
-    Battery_Type: "",
-    Battery_Others: "",
+    BatteryType: "",
+    BatteryOthers: "",
     Description: "",
-    Rupee_Price: "",
-    Dollar_Price: "",
-    Daraz_Link: "",
-    Amazon_Link: "",
-    Pticeoye_Link: "",
+    RupeePrice: "",
+    DollarPrice: "",
+    DarazLink: "",
+    AmazonLink: "",
+    PticeoyeLink: "",
     images: "",
-    Youtube_Link: "",
+    YoutubeLink: "",
   });
-console.log(PostData);
+  console.log(PostData);
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    
 
-    formData.append("Product_Name",PostData.Product_Name);
-    formData.append("Card_Slot",PostData.Card_Slot);
-    formData.append("Internal_Memory",PostData.Internal_Memory);
-    formData.append("Technology",PostData.Technology);
-    formData.append("G2Bands",PostData.G2Bands);
-    formData.append("G3Bands",PostData.G3Bands);
-    formData.append("G4Bands",PostData.G4Bands);
-    formData.append("Network_Speed",PostData.Network_Speed);
-    formData.append("Announced_Date",PostData.Announced_Date);
-    formData.append("Status",PostData.Status);
-    formData.append("Dimensions",PostData.Dimensions);
-    formData.append("Weight",PostData.Weight);
-    formData.append("Sim",PostData.Sim);
-    formData.append("Others_Body",PostData.Others_Body);
-    formData.append("Display_Size",PostData.Display_Size);
-    formData.append("Display_Type",PostData.Display_Type);
-    formData.append("Display_Resolution",PostData.Display_Resolution);
-    formData.append("Display_Protection",PostData.Display_Protection);
-    formData.append("OS",PostData.OS);
-    formData.append("Chipset",PostData.Chipset);
-    formData.append("CPU",PostData.CPU);
-    formData.append("GPU",PostData.GPU);
-    formData.append("Primary_Camera",PostData.Primary_Camera);
-    formData.append("Secondary_Camera",PostData.Secondary_Camera);
-    formData.append("Camera_Features",PostData.Camera_Features);
-    formData.append("Camera_Video",PostData.Camera_Video);
-    formData.append("Camera_Others",PostData.Camera_Others);
-    formData.append("Loud_Speaker",PostData.Loud_Speaker);
-    formData.append("jack_Sound",PostData.jack_Sound);
-    formData.append("Comms_Wlan",PostData.Comms_Wlan);
-    formData.append("Comms_Bluetooth",PostData.Comms_Bluetooth);
-    formData.append("Comms_GPS",PostData.Comms_GPS);
-    formData.append("Comms_NFC",PostData.Comms_NFC);
-    formData.append("Comms_Radio",PostData.Comms_Radio);
-   
-    formData.append("Comms_Usb",PostData.Comms_Usb);
-    formData.append("Sensors",PostData.Sensors);
-    formData.append("Battery_Type",PostData.Battery_Type);
-    formData.append("Battery_Others",PostData.Battery_Others);
-    formData.append("Description",PostData.Description);
-    formData.append("Rupee_Price",PostData.Rupee_Price);
-    formData.append("Dollar_Price",PostData.Dollar_Price);
-    formData.append("Daraz_Link",PostData.Dollar_Price);
-    formData.append("Amazon_Link",PostData.Amazon_Link);
-    formData.append("Pticeoye_Link",PostData.Pticeoye_Link);
-    formData.append("Youtube_Link",PostData.Youtube_Link);
+    formData.append("ProductName", PostData.ProductName);
+    formData.append("CardSlot", PostData.CardSlot);
+    formData.append("InternalMemory", PostData.InternalMemory);
+    formData.append("Technology", PostData.Technology);
+    formData.append("G2Bands", PostData.G2Bands);
+    formData.append("G3Bands", PostData.G3Bands);
+    formData.append("G4Bands", PostData.G4Bands);
+    formData.append("NetworkSpeed", PostData.NetworkSpeed);
+    formData.append("AnnouncedDate", PostData.AnnouncedDate);
+    formData.append("Status", PostData.Status);
+    formData.append("Dimensions", PostData.Dimensions);
+    formData.append("Weight", PostData.Weight);
+    formData.append("Sim", PostData.Sim);
+    formData.append("OthersBody", PostData.OthersBody);
+    formData.append("DisplaySize", PostData.DisplaySize);
+    formData.append("DisplayType", PostData.DisplayType);
+    formData.append("DisplayResolution", PostData.DisplayResolution);
+    formData.append("DisplayProtection", PostData.DisplayProtection);
+    formData.append("OS", PostData.OS);
+    formData.append("Chipset", PostData.Chipset);
+    formData.append("CPU", PostData.CPU);
+    formData.append("GPU", PostData.GPU);
+    formData.append("PrimaryCamera", PostData.PrimaryCamera);
+    formData.append("SecondaryCamera", PostData.SecondaryCamera);
+    formData.append("CameraFeatures", PostData.CameraFeatures);
+    formData.append("CameraVideo", PostData.CameraVideo);
+    formData.append("CameraOthers", PostData.CameraOthers);
+    formData.append("LoudSpeaker", PostData.LoudSpeaker);
+    formData.append("jackSound", PostData.jackSound);
+    formData.append("CommsWlan", PostData.CommsWlan);
+    formData.append("CommsBluetooth", PostData.CommsBluetooth);
+    formData.append("CommsGPS", PostData.CommsGPS);
+    formData.append("CommsNFC", PostData.CommsNFC);
+    formData.append("CommsRadio", PostData.CommsRadio);
+    formData.append("CommsUsb", PostData.CommsUsb);
+    formData.append("Sensors", PostData.Sensors);
+    formData.append("BatteryType", PostData.BatteryType);
+    formData.append("BatteryOthers", PostData.BatteryOthers);
+    formData.append("Description", PostData.Description);
+    formData.append("RupeePrice", PostData.RupeePrice);
+    formData.append("DollarPrice", PostData.DollarPrice);
+    formData.append("DarazLink", PostData.DollarPrice);
+    formData.append("AmazonLink", PostData.AmazonLink);
+    formData.append("PticeoyeLink", PostData.PticeoyeLink);
+    formData.append("YoutubeLink", PostData.YoutubeLink);
+    console.log(formData);
     for (let i = 0; i < PostData.images.length; i++) {
       formData.append("images", PostData.images[i]);
     }
@@ -136,24 +135,24 @@ console.log(PostData);
               type="text"
               placeholder="Product Name"
               className="inputsDatas"
-              name="Product_Name"
-              value={PostData.Product_Name}
+              name="ProductName"
+              value={PostData.ProductName}
               onChange={handleChange}
             />
             <input
               type="text"
               placeholder="Card Slot"
               className="inputsDatas"
-              name="Card_Slot"
-              value={PostData.Card_Slot}
+              name="CardSlot"
+              value={PostData.CardSlot}
               onChange={handleChange}
             />
             <input
               type="text"
               placeholder="Internal Memory"
               className="inputsDatas"
-              name="Internal_Memory"
-              value={PostData.Internal_Memory}
+              name="InternalMemory"
+              value={PostData.InternalMemory}
               onChange={handleChange}
             />
             <input
@@ -190,18 +189,18 @@ console.log(PostData);
             />
             <input
               type="text"
-              placeholder="Network_Speed"
+              placeholder="NetworkSpeed"
               className="inputsDatas"
-              name="Network_Speed"
-              value={PostData.Network_Speed}
+              name="NetworkSpeed"
+              value={PostData.NetworkSpeed}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Announced_Date"
+              placeholder="AnnouncedDate"
               className="inputsDatas"
-              name="Announced_Date"
-              value={PostData.Announced_Date}
+              name="AnnouncedDate"
+              value={PostData.AnnouncedDate}
               onChange={handleChange}
             />
             <input
@@ -239,42 +238,42 @@ console.log(PostData);
             />
             <input
               type="text"
-              placeholder="Others_Body"
+              placeholder="OthersBody"
               className="inputsDatas"
-              name="Others_Body"
-              value={PostData.Others_Body}
+              name="OthersBody"
+              value={PostData.OthersBody}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Display_Size"
+              placeholder="DisplaySize"
               className="inputsDatas"
-              name="Display_Size"
-              value={PostData.Display_Size}
+              name="DisplaySize"
+              value={PostData.DisplaySize}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Display_Type"
+              placeholder="DisplayType"
               className="inputsDatas"
-              name="Display_Type"
-              value={PostData.Display_Type}
+              name="DisplayType"
+              value={PostData.DisplayType}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Display_Resolution"
+              placeholder="DisplayResolution"
               className="inputsDatas"
-              name="Display_Resolution"
-              value={PostData.Display_Resolution}
+              name="DisplayResolution"
+              value={PostData.DisplayResolution}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Display_Protection"
+              placeholder="DisplayProtection"
               className="inputsDatas"
-              name="Display_Protection"
-              value={PostData.Display_Protection}
+              name="DisplayProtection"
+              value={PostData.DisplayProtection}
               onChange={handleChange}
             />
 
@@ -312,106 +311,106 @@ console.log(PostData);
             />
             <input
               type="text"
-              placeholder="Primary_Camera"
+              placeholder="PrimaryCamera"
               className="inputsDatas"
-              name="Primary_Camera"
-              value={PostData.Primary_Camera}
+              name="PrimaryCamera"
+              value={PostData.PrimaryCamera}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Secondary_Camera"
+              placeholder="SecondaryCamera"
               className="inputsDatas"
-              name="Secondary_Camera"
-              value={PostData.Secondary_Camera}
+              name="SecondaryCamera"
+              value={PostData.SecondaryCamera}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Camera_Features"
+              placeholder="CameraFeatures"
               className="inputsDatas"
-              name="Camera_Features"
-              value={PostData.Camera_Features}
+              name="CameraFeatures"
+              value={PostData.CameraFeatures}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Camera_Video"
+              placeholder="CameraVideo"
               className="inputsDatas"
-              name="Camera_Video"
-              value={PostData.Camera_Video}
+              name="CameraVideo"
+              value={PostData.CameraVideo}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Camera_Others"
+              placeholder="CameraOthers"
               className="inputsDatas"
-              name="Camera_Others"
-              value={PostData.Camera_Others}
+              name="CameraOthers"
+              value={PostData.CameraOthers}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Loud_Speaker"
+              placeholder="LoudSpeaker"
               className="inputsDatas"
-              name="Loud_Speaker"
-              value={PostData.Loud_Speaker}
+              name="LoudSpeaker"
+              value={PostData.LoudSpeaker}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="jack_Sound"
+              placeholder="jackSound"
               className="inputsDatas"
-              name="jack_Sound"
-              value={PostData.jack_Sound}
+              name="jackSound"
+              value={PostData.jackSound}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Comms_Wlan"
+              placeholder="CommsWlan"
               className="inputsDatas"
-              name="Comms_Wlan"
-              value={PostData.Comms_Wlan}
+              name="CommsWlan"
+              value={PostData.CommsWlan}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Comms_Bluetooth"
+              placeholder="CommsBluetooth"
               className="inputsDatas"
-              name="Comms_Bluetooth"
-              value={PostData.Comms_Bluetooth}
+              name="CommsBluetooth"
+              value={PostData.CommsBluetooth}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Comms_GPS"
+              placeholder="CommsGPS"
               className="inputsDatas"
-              name="Comms_GPS"
-              value={PostData.Comms_GPS}
+              name="CommsGPS"
+              value={PostData.CommsGPS}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Comms_NFC"
+              placeholder="CommsNFC"
               className="inputsDatas"
-              name="Comms_NFC"
-              value={PostData.Comms_NFC}
+              name="CommsNFC"
+              value={PostData.CommsNFC}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Comms_Radio"
+              placeholder="CommsRadio"
               className="inputsDatas"
-              name="Comms_Radio"
-              value={PostData.Comms_Radio}
+              name="CommsRadio"
+              value={PostData.CommsRadio}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Comms_Usb"
+              placeholder="CommsUsb"
               className="inputsDatas"
-              name="Comms_Usb"
-              value={PostData.Comms_Usb}
+              name="CommsUsb"
+              value={PostData.CommsUsb}
               onChange={handleChange}
             />
             <input
@@ -424,18 +423,18 @@ console.log(PostData);
             />
             <input
               type="text"
-              placeholder="Battery_Type"
+              placeholder="BatteryType"
               className="inputsDatas"
-              name="Battery_Type"
-              value={PostData.Battery_Type}
+              name="BatteryType"
+              value={PostData.BatteryType}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Battery_Others"
+              placeholder="BatteryOthers"
               className="inputsDatas"
-              name="Battery_Others"
-              value={PostData.Battery_Others}
+              name="BatteryOthers"
+              value={PostData.BatteryOthers}
               onChange={handleChange}
             />
             <input
@@ -448,50 +447,50 @@ console.log(PostData);
             />
             <input
               type="text"
-              placeholder="Rupee_Price"
+              placeholder="RupeePrice"
               className="inputsDatas"
-              name="Rupee_Price"
-              value={PostData.Rupee_Price}
+              name="RupeePrice"
+              value={PostData.RupeePrice}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Dollar_Price"
+              placeholder="DollarPrice"
               className="inputsDatas"
-              name="Dollar_Price"
-              value={PostData.Dollar_Price}
+              name="DollarPrice"
+              value={PostData.DollarPrice}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Daraz_Link"
+              placeholder="DarazLink"
               className="inputsDatas"
-              name="Daraz_Link"
-              value={PostData.Daraz_Link}
+              name="DarazLink"
+              value={PostData.DarazLink}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Amazon_Link"
+              placeholder="AmazonLink"
               className="inputsDatas"
-              name="Amazon_Link"
-              value={PostData.Amazon_Link}
+              name="AmazonLink"
+              value={PostData.AmazonLink}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Pticeoye_Link"
+              placeholder="PticeoyeLink"
               className="inputsDatas"
-              name="Pticeoye_Link"
-              value={PostData.Pticeoye_Link}
+              name="PticeoyeLink"
+              value={PostData.PticeoyeLink}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="Youtube_Link"
+              placeholder="YoutubeLink"
               className="inputsDatas"
-              name="Youtube_Link"
-              value={PostData.Youtube_Link}
+              name="YoutubeLink"
+              value={PostData.YoutubeLink}
               onChange={handleChange}
             />
             {/* there we will upload files soon inshallah */}

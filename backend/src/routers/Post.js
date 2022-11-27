@@ -1,13 +1,13 @@
 const express = require("express");
-const Post = require("../model/user");
+const Post = require("../model/post");
 require("../DB/db");
 const router = express.Router();
 const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 let path = require("path");
-let User = require("../model/user");
+let Data = require("../model/post");
 
-const DIR = "./public/";
+const DIR = "./public/img";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, DIR);
@@ -39,21 +39,108 @@ router.route("/add").post(upload.array("images", 12), (req, res) => {
   for (var i = 0; i < req.files.length; i++) {
     reqFiles.push(url + "/public/" + req.files[i].filename);
   }
-  console.log(req.body);
-  
+  const {
+    ProductName,
+    CardSlot,
+    InternalMemory,
+    Technology,
+    G2Bands,
+    G3Bands,
+    G4Bands,
+    NetworkSpeed,
+    AnnouncedDate,
+    Status,
+    Dimensions,
+    Weight,
+    Sim,
+    OthersBody,
+    DisplaySize,
+    DisplayType,
+    DisplayResolution,
+    DisplayProtection,
+    OS,
+    Chipset,
+    CPU,
+    GPU,
+    PrimaryCamera,
+    SecondaryCamera,
+    CameraFeatures,
+    CameraVideo,
+    CameraOthers,
+    LoudSpeaker,
+    jackSound,
+    CommsWlan,
+    CommsBluetooth,
+    CommsGPS,
+    CommsNFC,
+    CommsRadio,
+    CommsUsb,
+    Sensors,
+    BatteryType,
+    BatteryOthers,
+    Description,
+    RupeePrice,
+    DollarPrice,
+    DarazLink,
+    AmazonLink,
+    PticeoyeLink,
+    images,
+    YoutubeLink,
+  } = req.body;
 
-  // const newUserData = {
-  //   name,
-  //   birthdate,
-  //   photo,
-  // };
-
-  // const newUser = new User(newUserData);
-
-  // newUser
-  //   .save()
-  //   .then(() => res.json("User Added"))
-  //   .catch((err) => res.status(400).json("Error: " + err));
+  const newPostData = {
+    ProductName,
+    CardSlot,
+    InternalMemory,
+    Technology,
+    G2Bands,
+    G3Bands,
+    G4Bands,
+    NetworkSpeed,
+    AnnouncedDate,
+    Status,
+    Dimensions,
+    Weight,
+    Sim,
+    OthersBody,
+    DisplaySize,
+    DisplayType,
+    DisplayResolution,
+    DisplayProtection,
+    OS,
+    Chipset,
+    CPU,
+    GPU,
+    PrimaryCamera,
+    SecondaryCamera,
+    CameraFeatures,
+    CameraVideo,
+    CameraOthers,
+    LoudSpeaker,
+    jackSound,
+    CommsWlan,
+    CommsBluetooth,
+    CommsGPS,
+    CommsNFC,
+    CommsRadio,
+    CommsUsb,
+    Sensors,
+    BatteryType,
+    BatteryOthers,
+    Description,
+    RupeePrice,
+    DollarPrice,
+    DarazLink,
+    AmazonLink,
+    PticeoyeLink,
+    images,
+    YoutubeLink,
+  };
+  const newPost = new Data(newPostData);
+  newPost
+    .save()
+    .then(() => res.json("post Added"))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 module.exports = router;
