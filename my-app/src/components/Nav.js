@@ -2,6 +2,7 @@ import React from "react";
 import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
+import "./css/Nav.css";
 const Nav = () => {
   const showMenu = useRef();
   const Navigate = useNavigate();
@@ -36,12 +37,19 @@ const Nav = () => {
             </ul>
             <ul className="header-links pull-right">
               <li>
-                <a href="#">
-                  <i className="fa fa-dollar"></i> USD
-                </a>
+                <select name="" id="" className="slectAcurrency">
+                  <option value="">Select Currency</option>
+                  <option value="USD">USD</option>
+                  <option value="Rupee">Rupee </option>
+                </select>
+                
               </li>
-              <li style={{cursor:"pointer"}}>
-                <a onClick={()=>{Navigate("/Profile")}}>
+              <li style={{ cursor: "pointer" }}>
+                <a
+                  onClick={() => {
+                    Navigate("/Profile");
+                  }}
+                >
                   <i className="fa fa-user-o"></i> My Account
                 </a>
               </li>
@@ -68,14 +76,24 @@ const Nav = () => {
               <div className="col-md-3 clearfix">
                 <div className="header-ctn">
                   <div>
-                    <a onClick={()=>{Navigate("/wishlist")}} style={{cursor:"pointer"}}>
+                    <a
+                      onClick={() => {
+                        Navigate("/wishlist");
+                      }}
+                      style={{ cursor: "pointer" }}
+                    >
                       <i className="fa fa-heart-o"></i>
                       <span>Your Wishlist</span>
                       <div className="qty">2</div>
                     </a>
                   </div>
 
-                  <div className="" onClick={() => {Navigate("/cart")}}>
+                  <div
+                    className=""
+                    onClick={() => {
+                      Navigate("/cart");
+                    }}
+                  >
                     <a style={{ cursor: "pointer" }}>
                       <i className="fa fa-shopping-cart"></i>
                       <span>Your Cart</span>

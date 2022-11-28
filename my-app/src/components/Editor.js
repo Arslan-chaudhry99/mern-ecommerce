@@ -6,6 +6,7 @@ import axios from "axios";
 const Editor = () => {
   const [PostData, setPostData] = useState({
     ProductName: "",
+    BrandName: "",
     CardSlot: "",
     InternalMemory: "",
     Technology: "",
@@ -59,6 +60,7 @@ const Editor = () => {
     const formData = new FormData();
 
     formData.append("ProductName", PostData.ProductName);
+    formData.append("BrandName", PostData.BrandName);
     formData.append("CardSlot", PostData.CardSlot);
     formData.append("InternalMemory", PostData.InternalMemory);
     formData.append("Technology", PostData.Technology);
@@ -132,9 +134,21 @@ const Editor = () => {
 
   return (
     <>
-      <div className="col-md-12" style={{marginBottom:"100px"}}>
+      <div className="col-md-12" style={{ marginBottom: "100px" }}>
         <div id="product-tab">
           <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <input
+              type="text"
+              placeholder="Please Enter Brand Name"
+              className="inputsDatas"
+              name="BrandName"
+              value={PostData.BrandName}
+              onChange={handleChange}
+              style={{ marginBottom: "0" }}
+            />
+            <small style={{ color: "red" }}>
+              Don't use white spaces during the entry of brand name
+            </small>
             <input
               type="text"
               placeholder="Product Name"
@@ -508,12 +522,12 @@ const Editor = () => {
             />
             <div className="displayingItems">
               {actuallPhotos.map((data) => {
-                return <>
-                 <div className="actualItemsDetails">{data}</div>
-                </>
-                
+                return (
+                  <>
+                    <div className="actualItemsDetails">{data}</div>
+                  </>
+                );
               })}
-             
             </div>
             <input type="submit" />
           </form>

@@ -4,6 +4,10 @@ const PostData = new mongoose.Schema({
     type: String,
     require: true,
   },
+  BrandName: {
+    type: String,
+    require: true,
+  },
   CardSlot: {
     type: String,
     require: true,

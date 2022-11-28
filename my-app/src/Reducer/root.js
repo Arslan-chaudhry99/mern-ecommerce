@@ -1,5 +1,4 @@
-import { combineReducers, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import IncrementData from "./Inc";
-const rootReducer = combineReducers({ IncrementData }, applyMiddleware(thunk));
+import { combineReducers } from "redux";
+import ProductsDatas from "./Products";
+const rootReducer = combineReducers({ ProductsDatas });
 export default rootReducer;

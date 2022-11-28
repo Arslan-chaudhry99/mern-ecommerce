@@ -3,9 +3,7 @@ import React from "react";
 const Store = () => {
   return (
     <>
-      <span class="list-group-item container d-flex justify-content-between align-items-center ">
-        <div>Home / Store</div>
-      </span>
+      
       <div class="section">
         <div class="container">
           <div class="row">
@@ -89,18 +87,12 @@ const Store = () => {
               <div class="store-filter clearfix">
                 <div class="store-sort">
                   <label>
-                    Sort By:
-                    <select class="input-select">
-                      <option value="0">Popular</option>
-                      <option value="1">Position</option>
-                    </select>
-                  </label>
+                    <span style={{ marginRight: "15px" }}> Show:</span>
 
-                  <label>
-                    Show:
                     <select class="input-select">
-                      <option value="0">20</option>
-                      <option value="1">50</option>
+                      <option value="0">10</option>
+                      <option value="1">20</option>
+                      <option value="1">30</option>
                     </select>
                   </label>
                 </div>
@@ -130,7 +122,6 @@ const Store = () => {
               </div>
 
               <div class="store-filter clearfix">
-               
                 <ul class="store-pagination">
                   <li class="active">1</li>
                   <li>

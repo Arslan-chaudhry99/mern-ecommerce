@@ -37,11 +37,12 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
   const reqFiles = [];
   const url = req.protocol + "://" + req.get("host");
   for (var i = 0; i < req.files.length; i++) {
-    reqFiles.push(url + "/public/" + req.files[i].filename);
+    reqFiles.push(url + "/public/img/" + req.files[i].filename);
   }
 
   const {
     ProductName,
+    BrandName,
     CardSlot,
     InternalMemory,
     Technology,
@@ -90,6 +91,7 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
 
   const newPostData = {
     ProductName,
+    BrandName:BrandName.toLowerCase(),
     CardSlot,
     InternalMemory,
     Technology,
@@ -141,6 +143,11 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
     .save()
     .then(() => res.json("post Added"))
     .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.get("/getProducts", async (req, res) => {
+  const data = await Post.find();
+  res.send(data);
 });
 
 module.exports = router;
