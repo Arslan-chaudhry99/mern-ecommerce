@@ -364,6 +364,30 @@ const PostData = new mongoose.Schema({
     type: String,
     require: true,
   },
+  RAMS: {
+    type: String,
+    require: true,
+  },
+  camera: {
+    type: String,
+    require: true,
+  },
+  displaysize: {
+    type: String,
+    require: true,
+  },
+  network: {
+    type: String,
+    require: true,
+  },
+  network: {
+    type: String,
+    require: true,
+  },
+  pricing: {
+    type: String,
+    require: true,
+  },
 });
 
 const Post = new mongoose.model("Post", PostData);

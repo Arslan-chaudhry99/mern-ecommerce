@@ -87,11 +87,16 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
     AmazonLink,
     PticeoyeLink,
     YoutubeLink,
+    RAMS,
+    camera,
+    displaysize,
+    network,
+    pricing,
   } = req.body;
 
   const newPostData = {
-    ProductName,
-    BrandName:BrandName.toLowerCase(),
+    ProductName: ProductName.toString().replaceAll(/\s/g, "-"),
+    BrandName: BrandName.toLowerCase(),
     CardSlot,
     InternalMemory,
     Technology,
@@ -137,7 +142,13 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
     PticeoyeLink,
     images: reqFiles,
     YoutubeLink,
+    RAMS,
+    camera,
+    displaysize,
+    network,
+    pricing,
   };
+
   const newPost = new Data(newPostData);
   newPost
     .save()
@@ -146,8 +157,31 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
 });
 
 router.get("/getProducts", async (req, res) => {
-  const data = await Post.find();
-  res.send(data);
+  const QueryName = req.query.QueryName;
+  const QueryValues = req.query.QueryValues;
+  const page = req.query.page;
+  const size = 3;
+  const skip = (page - 1) * size;
+  console.log(size, req.query.page, QueryName, QueryValues);
+  if (QueryName !== "" && QueryValues !== "") {
+    const total = await Post.find({ [QueryValues]: QueryName });
+    console.log(total.length);
+    if (total.length === 0) {
+      console.log("product length is zoro");
+
+      return res.status(200).json({ data: [], total: 0 });
+    } else {
+      const data = await Post.find({ [QueryValues]: { $in: QueryName } })
+        .skip(skip)
+        .limit(size);
+      console.log(total.length);
+      return res.status(200).json({ data: data, total: total.length });
+    }
+  } else {
+    const data = await Post.find({}).skip(skip).limit(size);
+    const total = await Post.find();
+    return res.status(200).json({ data: data, total: total.length });
+  }
 });
 
 module.exports = router;

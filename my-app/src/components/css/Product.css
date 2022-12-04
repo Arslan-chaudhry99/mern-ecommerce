@@ -31,16 +31,15 @@
   margin-bottom: 30px;
 }
 
-.ProductCoverData  {
-  
-  color: rgba(48,63,74,.5);
+.ProductCoverData {
+  color: rgba(48, 63, 74, 0.5);
 }
-.ProductCoverDataright{
-        color: black;
+.ProductCoverDataright {
+  color: black;
 }
 .ProductCoverData .moreProDetails div {
-        display: inline;
-        padding: 0px 60px 0px 0px;
+  display: inline;
+  padding: 0px 60px 0px 0px;
 }
 .brandDetailsSection span {
   margin-left: 20px;
@@ -57,4 +56,21 @@
 }
 .brandDetailsSectionlogo i {
   font-size: 20px;
+}
+.reviewsOfThisProduct {
+  width: 100%;
+  background-color: #f1f2f6;
+  border-radius: 5px;
+  padding: 10px 0px 10px 0px;
+  margin-top: 20px;
+ 
+}
+.seeViewsData{
+  width: 120px;
+  border-radius: 5px;
+  padding: 5px;
+}
+.productReviewsData{
+  width: 100%;
+  background-color: red;
 }

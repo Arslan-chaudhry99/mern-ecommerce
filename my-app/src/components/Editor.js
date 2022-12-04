@@ -105,6 +105,11 @@ const Editor = () => {
     formData.append("AmazonLink", PostData.AmazonLink);
     formData.append("PticeoyeLink", PostData.PticeoyeLink);
     formData.append("YoutubeLink", PostData.YoutubeLink);
+    formData.append("RAMS", PostData.RAMS);
+    formData.append("camera", PostData.camera);
+    formData.append("displaysize", PostData.displaysize);
+    formData.append("network", PostData.network);
+    formData.append("pricing", PostData.pricing);
 
     for (let i = 0; i < PostData.images.length; i++) {
       formData.append("images", PostData.images[i]);
@@ -131,24 +136,125 @@ const Editor = () => {
   const handlePhoto = (e) => {
     setPostData({ ...PostData, images: e.target.files });
   };
-
+  let name;
+  let value;
+  const handleChangeFilter = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setPostData({ ...PostData, [name]: value });
+  };
+ 
   return (
     <>
       <div className="col-md-12" style={{ marginBottom: "100px" }}>
         <div id="product-tab">
           <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <input
-              type="text"
-              placeholder="Please Enter Brand Name"
-              className="inputsDatas"
+            <select
               name="BrandName"
-              value={PostData.BrandName}
-              onChange={handleChange}
-              style={{ marginBottom: "0" }}
-            />
-            <small style={{ color: "red" }}>
-              Don't use white spaces during the entry of brand name
-            </small>
+              className="searchByNettwork"
+              onChange={handleChangeFilter}
+            >
+              <option value="">Search By Brands</option>
+              <option value="samsung">Samsung</option>
+              <option value="vivo">Vivo</option>
+              <option value="oppo">Oppo</option>
+              <option value="infinix">Infinix</option>
+              <option value="realme">Realme</option>
+              <option value="nokia">Nokia</option>
+              <option value="apple">Apple</option>
+              <option value="xiaomi">Xiaomi</option>
+              <option value="tecno">Tecno</option>
+              <option value="huawei">Huawei</option>
+              <option value="qmobile">Qmobile</option>
+              <option value="itel">itel</option>
+              <option value="onePlus">OnePlus</option>
+              <option value="sony">Sony</option>
+              <option value="honor">Honor</option>
+              <option value="htC">HTC</option>
+              <option value="meizu">Meizu</option>
+              <option value="lg">LG</option>
+              <option value="mobilink">Mobilink</option>
+              <option value="lenovo">Lenovo</option>
+              <option value="motorola">Motorola</option>
+              <option value="blackBerry">BlackBerry</option>
+              <option value="alcatel">Alcatel</option>
+              <option value="oPhone">OPhone</option>
+              <option value="calme">Calme</option>
+              <option value="gRight">GRight</option>
+              <option value="gfive">GFive</option>
+              <option value="club">Club</option>
+              <option value="rivo">Rivo</option>
+              <option value="microsoft">Microsoft</option>
+              <option value="voice">Voice</option>
+              <option value="haier">Haier</option>
+            </select>
+            <select
+              name="network"
+              className="searchByNettwork"
+              onChange={handleChangeFilter}
+            >
+              <option value="">Search By Network</option>
+              <option value="5G">5G Mobile Prices</option>
+              <option value="4G">4G Mobile Prices</option>
+            </select>
+            <select
+              name="RAMS"
+              className="searchByNettwork"
+              onChange={handleChangeFilter}
+            >
+              <option value="">Search By RAM</option>
+              <option value="2GB">2GB RAM</option>
+              <option value="3GB">3GB RAM</option>
+              <option value="4GB">4GB RAM</option>
+              <option value="6GB">6GB RAM</option>
+              <option value="8GB">8GB RAM</option>
+              <option value="12GB">12GB RAM</option>
+            </select>
+            <select
+              name="pricing"
+              className="searchByNettwork"
+              onChange={handleChangeFilter}
+            >
+              <option value="">Search By Prices</option>
+              <option value="45000-to-above">Rs. 45000 & Above</option>
+              <option value="35000-to-45001">Rs. 35000 to 45001</option>
+              <option value="25000-to-35001">Rs. 25000 to 35001</option>
+              <option value="25000-to-35001">Rs. 25000 to 35001</option>
+              <option value="15000-to-25000">Rs. 15000 to 25000</option>
+              <option value="10000-to-15001">Rs. 10000 to 15001</option>
+              <option value="5000-to-10001">Rs. 5000 to 10001</option>
+              <option value="less-than-5000">less than 5000</option>
+            </select>
+            <select
+              name="camera"
+              id=""
+              className="searchByNettwork"
+              onChange={handleChangeFilter}
+            >
+              <option>Search By CAM</option>
+              <option value="13MGA">13 Megapixel</option>
+              <option value="8MGA">8 Megapixel</option>
+              <option value="5MGA">5 Megapixel</option>
+              <option value="3MGA">3 Megapixel</option>
+              <option value="2MGA"> 2 Megapixel</option>
+              <option value="1MGA"> 1 Megapixel</option>
+              <option value="VGA">VGA Camera</option>
+              <option value="WOC">Without Camera</option>
+            </select>
+            <select
+              name="displaysize"
+              id=""
+              className="searchByNettwork"
+              onChange={handleChangeFilter}
+            >
+              <option value=""> Search By Screen</option>
+              <option value="1.0-to-2.9">1.0 to 2.9 Inches</option>
+              <option value="3.0-to-4.0">3.0 to 4.0 Inches</option>
+              <option value="4.1-to-4.9">4.1 to 4.9 Inches</option>
+              <option value="5.0-to-6.9">5.0 to 6.9 Inches</option>
+              <option value="7.0-to-8.9">7.0 to 8.9 Inches</option>
+            </select>
+
             <input
               type="text"
               placeholder="Product Name"

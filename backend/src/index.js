@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 5000
 
 app.use(require("./routers/signup"));
 app.use(require("./routers/Post"));
+app.use(require("./routers/Reviews"))
 
 
 app.listen(PORT, () => {

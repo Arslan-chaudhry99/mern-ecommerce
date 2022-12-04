@@ -1,11 +1,7 @@
 import React from "react";
 
 const FQR = () => {
-  return (
-    <>
-     
-    </>
-  );
+  return <></>;
 };
 
 export default FQR;

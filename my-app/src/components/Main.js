@@ -6,6 +6,7 @@ import "./css/Mainpage.css";
 import { useEffect } from "react";
 import { getAllProductsData } from "../Action";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 const Main = () => {
   const responsive = {
     superLargeDesktop: {
@@ -31,24 +32,31 @@ const Main = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllProductsData());
+    dispatch(getAllProductsData(""));
   }, []);
-console.log(productState);
-  let arr = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
+
   return (
     <>
       <Carousel responsive={responsive} className="container">
-        {productState.map((values) => {
+        {productState.content.flat().map((values) => {
           return (
             <>
-              <div class="product productSliderMain container">
-                <div class="product-img">
-                  <i class="fa fa-heart-o"></i>
-                  <span className="CartTagLine">new</span>
-                  
-                  <img src={values.images[0]} alt="" />
-                </div>
-                {/* <div className="text-info reviewsForCard">
+              <NavLink to={"/Product/" + values.ProductName}>
+                <div class="product productSliderMain container">
+                  <div class="product-img">
+                    <i class="fa fa-heart-o"></i>
+                    <span className="CartTagLine">new</span>
+                    <img
+                      src={values.images[0]}
+                      alt="img"
+                      style={{
+                        width: "100%",
+                        height: "200px",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                  {/* <div className="text-info reviewsForCard">
                   <span className="product-rating">
                     <i className="fa fa-star"></i>
                     <i className="fa fa-star"></i>
@@ -58,23 +66,23 @@ console.log(productState);
                     <a className="review-link">(10)</a>
                   </span>
                 </div> */}
-                <div class="product-body">
-                  <h3 class="product-name">
-                    <a>{values.ProductName}</a>
-                  </h3>
-                  <h4 class="product-price">
-                  ${values.DollarPrice}.00
-                   
-                    {/* <del class="product-old-price" style={{ color: "#dc3545" }}>
+                  <div class="product-body">
+                    <h3 class="product-name">
+                      <a>{values.ProductName.replaceAll(/\-/g, " ")}</a>
+                    </h3>
+                    <h4 class="product-price">
+                      ${values.DollarPrice}.00
+                      {/* <del class="product-old-price" style={{ color: "#dc3545" }}>
                       $990.00
                     </del> */}
-                  </h4>
+                    </h4>
 
-                  {/* <button class="add-to-cart-btn">
+                    {/* <button class="add-to-cart-btn">
                     <i class="fa fa-shopping-cart"></i> add to cart
                   </button> */}
+                  </div>
                 </div>
-              </div>
+              </NavLink>
             </>
           );
         })}
