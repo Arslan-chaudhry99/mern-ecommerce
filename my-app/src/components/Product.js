@@ -2,8 +2,8 @@ import React from "react";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
 import "./css/Product.css";
-import { getAllProductsData } from "../Action";
-import { getAllReviews } from "../Action";
+import { getMainData } from "../Action";
+
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
@@ -12,10 +12,11 @@ import axios from "axios";
 const Product = () => {
   const { name } = useParams();
   // fetching product data
-  const productState = useSelector((state) => state.ProductsDatas);
+  const productState = useSelector((state) => state.MainData);
   const dispatch = useDispatch();
+
   const reviewState = useSelector((state) => state.ReviewsDatas);
-  
+
   // set feedback
   const [Reviews, setReviews] = useState({
     ID: name,
@@ -41,8 +42,8 @@ const Product = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllProductsData(name));
-    dispatch(getAllReviews(name));
+    dispatch(getMainData(name));
+    // dispatch(getAllReviews(name));
   }, []);
 
   const responsive = {
@@ -76,10 +77,17 @@ const Product = () => {
                   <div className="col-md-5 col-md-push-2">
                     <div id="product-main-img">
                       <div className="product-preview">
-                        {/* <Carousel responsive={responsive}>
-                        <img src={value.images[index]} alt="img" />
-
-                        </Carousel> */}
+                        <Carousel responsive={responsive}>
+                          {value.images.map((value) => {
+                            return (
+                              <>
+                                <div style={{display:"flex",justifyContent:"center",alignItems:"center"}} >
+                                  <img src={value} alt="img" style={{width:"250px",height:"250px",}}  />
+                                </div>
+                              </>
+                            );
+                          })}
+                        </Carousel>
                       </div>
                     </div>
                   </div>
@@ -92,30 +100,30 @@ const Product = () => {
                         {value.ProductName.replaceAll(/\-/g, " ")}
                       </h2>
                       {/* <div>
-                        <div className="product-rating">
-                          <i
-                            className="fa fa-star"
-                            style={{ color: "red" }}
-                          ></i>
-                          <i
-                            className="fa fa-star"
-                            style={{ color: "red" }}
-                          ></i>
-                          <i
-                            className="fa fa-star"
-                            style={{ color: "red" }}
-                          ></i>
-                          <i
-                            className="fa fa-star"
-                            style={{ color: "red" }}
-                          ></i>
-                          <i
-                            className="fa fa-star-o"
-                            style={{ color: "red" }}
-                          ></i>
-                        </div>
-                        <a className="review-link">10 Review</a>
-                      </div> */}
+                            <div className="product-rating">
+                              <i
+                                className="fa fa-star"
+                                style={{ color: "red" }}
+                              ></i>
+                              <i
+                                className="fa fa-star"
+                                style={{ color: "red" }}
+                              ></i>
+                              <i
+                                className="fa fa-star"
+                                style={{ color: "red" }}
+                              ></i>
+                              <i
+                                className="fa fa-star"
+                                style={{ color: "red" }}
+                              ></i>
+                              <i
+                                className="fa fa-star-o"
+                                style={{ color: "red" }}
+                              ></i>
+                            </div>
+                            <a className="review-link">10 Review</a>
+                          </div> */}
                       <div>
                         <h3 className="product-price">
                           ${value.DollarPrice}.00{" "}
@@ -126,26 +134,26 @@ const Product = () => {
                       <p>{value.Description}</p>
 
                       {/* <div className="add-to-cart">
-                        <div className="qty-label">
-                          Qty
-                          <div className="input-number">
-                            <input type="number" />
-                            <span className="qty-up">+</span>
-                            <span className="qty-down">-</span>
-                          </div>
-                        </div>
-                        <button className="add-to-cart-btn">
-                          <i className="fa fa-shopping-cart"></i> add to cart
-                        </button>
-                      </div> */}
+                            <div className="qty-label">
+                              Qty
+                              <div className="input-number">
+                                <input type="number" />
+                                <span className="qty-up">+</span>
+                                <span className="qty-down">-</span>
+                              </div>
+                            </div>
+                            <button className="add-to-cart-btn">
+                              <i className="fa fa-shopping-cart"></i> add to cart
+                            </button>
+                          </div> */}
 
                       {/* <ul className="product-btns">
-                        <li>
-                          <a>
-                            <i className="fa fa-heart-o"></i> add to wishlist
-                          </a>
-                        </li>
-                      </ul> */}
+                            <li>
+                              <a>
+                                <i className="fa fa-heart-o"></i> add to wishlist
+                              </a>
+                            </li>
+                          </ul> */}
 
                       <ul className="product-links">
                         <li>
@@ -592,146 +600,146 @@ const Product = () => {
               <div className="row">
                 <div className="col-md-7">
                   {/* <div className="">
-                    <div id="rating">
-                      <div className="rating-avg ">
-                        <span>4.5</span>
-                        <div className="rating-stars ">
-                          <i
-                            className="fa fa-star"
-                            style={{ color: "red" }}
-                          ></i>
-                          <i
-                            className="fa fa-star"
-                            style={{ color: "red" }}
-                          ></i>
-                          <i
-                            className="fa fa-star"
-                            style={{ color: "red" }}
-                          ></i>
-                          <i
-                            className="fa fa-star"
-                            style={{ color: "red" }}
-                          ></i>
-                          <i
-                            className="fa fa-star-o"
-                            style={{ color: "red" }}
-                          ></i>
-                        </div>
-                      </div>
-                      <ul className="rating">
-                        <li>
-                          <div className="rating-stars">
-                            <i
-                              className="fa fa-star"
-                              style={{ color: "red" }}
-                            ></i>
-                            <i
-                              className="fa fa-star"
-                              style={{ color: "red" }}
-                            ></i>
-                            <i
-                              className="fa fa-star"
-                              style={{ color: "red" }}
-                            ></i>
-                            <i
-                              className="fa fa-star"
-                              style={{ color: "red" }}
-                            ></i>
-                            <i
-                              className="fa fa-star"
-                              style={{ color: "red" }}
-                            ></i>
-                          </div>
-                          <div className="rating-progress">
-                            <div style={{ width: "80%" }}></div>
-                          </div>
-                          <span className="sum">3</span>
-                        </li>
-                        <li>
-                          <div className="rating-stars">
-                            <i
-                              className="fa fa-star"
-                              style={{ color: "red" }}
-                            ></i>
-                            <i
-                              className="fa fa-star"
-                              style={{ color: "red" }}
-                            ></i>
-                            <i
-                              className="fa fa-star"
-                              style={{ color: "red" }}
-                            ></i>
-                            <i
-                              className="fa fa-star"
-                              style={{ color: "red" }}
-                            ></i>
-                            <i
-                              className="fa fa-star-o"
-                              style={{ color: "red" }}
-                            ></i>
-                          </div>
-                          <div className="rating-progress">
-                            <div style={{ width: "60%" }}></div>
-                          </div>
-                          <span className="sum">2</span>
-                        </li>
-                        <li>
-                          <div className="rating-stars">
-                            <i
-                              className="fa fa-star"
-                              style={{ color: "red" }}
-                            ></i>
-                            <i
-                              className="fa fa-star"
-                              style={{ color: "red" }}
-                            ></i>
-                            <i
-                              className="fa fa-star"
-                              style={{ color: "red" }}
-                            ></i>
-                            <i
-                              className="fa fa-star-o"
-                              style={{ color: "red" }}
-                            ></i>
-                            <i
-                              className="fa fa-star-o"
-                              style={{ color: "red" }}
-                            ></i>
-                          </div>
-                          <div className="rating-progress">
-                            <div></div>
-                          </div>
-                          <span className="sum">0</span>
-                        </li>
-                        <li>
-                          <div className="rating-stars">
-                            <i className="fa fa-star"></i>
-                            <i className="fa fa-star"></i>
-                            <i className="fa fa-star-o"></i>
-                            <i className="fa fa-star-o"></i>
-                            <i className="fa fa-star-o"></i>
-                          </div>
-                          <div className="rating-progress">
-                            <div></div>
-                          </div>
-                          <span className="sum">0</span>
-                        </li>
-                        <li>
-                          <div className="rating-stars">
-                            <i className="fa fa-star"></i>
-                            <i className="fa fa-star-o"></i>
-                            <i className="fa fa-star-o"></i>
-                            <i className="fa fa-star-o"></i>
-                            <i className="fa fa-star-o"></i>
-                          </div>
-                          <div className="rating-progress">
-                            <div></div>
-                          </div>
-                          <span className="sum">0</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div> */}
+        <div id="rating">
+          <div className="rating-avg ">
+            <span>4.5</span>
+            <div className="rating-stars ">
+              <i
+                className="fa fa-star"
+                style={{ color: "red" }}
+              ></i>
+              <i
+                className="fa fa-star"
+                style={{ color: "red" }}
+              ></i>
+              <i
+                className="fa fa-star"
+                style={{ color: "red" }}
+              ></i>
+              <i
+                className="fa fa-star"
+                style={{ color: "red" }}
+              ></i>
+              <i
+                className="fa fa-star-o"
+                style={{ color: "red" }}
+              ></i>
+            </div>
+          </div>
+          <ul className="rating">
+            <li>
+              <div className="rating-stars">
+                <i
+                  className="fa fa-star"
+                  style={{ color: "red" }}
+                ></i>
+                <i
+                  className="fa fa-star"
+                  style={{ color: "red" }}
+                ></i>
+                <i
+                  className="fa fa-star"
+                  style={{ color: "red" }}
+                ></i>
+                <i
+                  className="fa fa-star"
+                  style={{ color: "red" }}
+                ></i>
+                <i
+                  className="fa fa-star"
+                  style={{ color: "red" }}
+                ></i>
+              </div>
+              <div className="rating-progress">
+                <div style={{ width: "80%" }}></div>
+              </div>
+              <span className="sum">3</span>
+            </li>
+            <li>
+              <div className="rating-stars">
+                <i
+                  className="fa fa-star"
+                  style={{ color: "red" }}
+                ></i>
+                <i
+                  className="fa fa-star"
+                  style={{ color: "red" }}
+                ></i>
+                <i
+                  className="fa fa-star"
+                  style={{ color: "red" }}
+                ></i>
+                <i
+                  className="fa fa-star"
+                  style={{ color: "red" }}
+                ></i>
+                <i
+                  className="fa fa-star-o"
+                  style={{ color: "red" }}
+                ></i>
+              </div>
+              <div className="rating-progress">
+                <div style={{ width: "60%" }}></div>
+              </div>
+              <span className="sum">2</span>
+            </li>
+            <li>
+              <div className="rating-stars">
+                <i
+                  className="fa fa-star"
+                  style={{ color: "red" }}
+                ></i>
+                <i
+                  className="fa fa-star"
+                  style={{ color: "red" }}
+                ></i>
+                <i
+                  className="fa fa-star"
+                  style={{ color: "red" }}
+                ></i>
+                <i
+                  className="fa fa-star-o"
+                  style={{ color: "red" }}
+                ></i>
+                <i
+                  className="fa fa-star-o"
+                  style={{ color: "red" }}
+                ></i>
+              </div>
+              <div className="rating-progress">
+                <div></div>
+              </div>
+              <span className="sum">0</span>
+            </li>
+            <li>
+              <div className="rating-stars">
+                <i className="fa fa-star"></i>
+                <i className="fa fa-star"></i>
+                <i className="fa fa-star-o"></i>
+                <i className="fa fa-star-o"></i>
+                <i className="fa fa-star-o"></i>
+              </div>
+              <div className="rating-progress">
+                <div></div>
+              </div>
+              <span className="sum">0</span>
+            </li>
+            <li>
+              <div className="rating-stars">
+                <i className="fa fa-star"></i>
+                <i className="fa fa-star-o"></i>
+                <i className="fa fa-star-o"></i>
+                <i className="fa fa-star-o"></i>
+                <i className="fa fa-star-o"></i>
+              </div>
+              <div className="rating-progress">
+                <div></div>
+              </div>
+              <span className="sum">0</span>
+            </li>
+          </ul>
+        </div>
+      </div> */}
                   <Carousel responsive={responsive}>
                     {reviewState.map((data) => {
                       return (

@@ -2,27 +2,27 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "./css/Store.css";
 import { getAllProductsData } from "../Action";
-import { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { useRef } from "react";
+import Filters from "./Filters/Filters";
+import ReactPaginate from "react-paginate";
 const Store = () => {
   const sidesWidth = useRef("");
   const [Actual, setActual] = useState([]);
   const productState = useSelector((state) => state.ProductsDatas);
-console.log(productState);
+  console.log(productState);
   const dispatch = useDispatch();
-  const [Mores, setMores] = useState(1);
-  const [MoreFil, setMoreFil] = useState(1)
+  const [Mores, setMores] = useState({ name: "", value: "" });
+  const [MoreFil, setMoreFil] = useState(1);
   const [Query, setQuery] = useState({ nameing: "" });
-  const [ServerData, setServerData] = useState();
-  
+  const [ServerData, setServerData] = useState({ "": "" });
+
   let name;
   let value;
   const handleChange = (e) => {
     name = e.target.value;
     value = e.target.name;
-
+    setServerData({ [e.target.name]: e.target.value });
     var options = document.querySelectorAll("option");
     for (var i = 0, l = options.length; i < l; i++) {
       options[i].selected = options[i].defaultSelected;
@@ -51,17 +51,19 @@ console.log(productState);
         setQuery({ nameing: "" });
         break;
     }
-    
-    setMoreFil(MoreFil + 1);
-    dispatch(getAllProductsData(name, value,Mores));
+
+    // dispatch(getAllProductsData(name, value, ));
   };
-  let fetchMoreData = () => {
-    setMores(Mores + 1);
-    dispatch(getAllProductsData("", "", Mores));
+  let fetchMoreData = (event) => {
+    dispatch(getAllProductsData(ServerData, event.selected));
   };
+
   useEffect(() => {
-    dispatch(getAllProductsData("", "", 1));
+    dispatch(getAllProductsData(ServerData, 0));
   }, []);
+  useEffect(() => {
+    dispatch(getAllProductsData(ServerData, 0));
+  }, [ServerData]);
 
   return (
     <>
@@ -70,15 +72,6 @@ console.log(productState);
           <div class="row">
             <div id="aside" class="col-md-3">
               <div class="aside">
-                <select
-                  name="network"
-                  className="searchByNettwork"
-                  onChange={handleChange}
-                >
-                  <option value="">Search By Network</option>
-                  <option value="5G">5G Mobile Prices</option>
-                  <option value="4G">4G Mobile Prices</option>
-                </select>
                 <select
                   name="BrandName"
                   className="searchByNettwork"
@@ -190,20 +183,12 @@ console.log(productState);
               class="col-md-9"
               style={{ display: "flex", flexWrap: "wrap" }}
             >
-              <InfiniteScroll
-                dataLength={productState.content.flat().length}
-                next={fetchMoreData}
-                hasMore={
-                  productState.content.flat().length < productState.totalAmount
-                }
-                endMessage={
-                  <h4>
-                    Nothing more to show{productState.content.flat().length}
-                  </h4>
-                }
-                loader={<h4>Loading...</h4>}
-              >
-                {productState.content.flat().map((value) => {
+              {productState.content.length === 0 ? (
+                <div className="alert alert-danger error_alert"  role="alert">
+                <strong>No product! </strong>is available.
+                </div>
+              ) : (
+                productState.content.map((value) => {
                   return (
                     <>
                       <div
@@ -213,7 +198,11 @@ console.log(productState);
                         <div class="product-img">
                           {/* <i class="fa fa-heart-o"></i> */}
                           {/* <span className="CartTagLine">new</span> */}
-                          <img src={value.images[0]} alt="image" />
+                          <img
+                            src={value.images[0]}
+                            alt="image"
+                            loading="lazy"
+                          />
                         </div>
                         <div class="product-body">
                           <h3 class="product-name">
@@ -230,15 +219,30 @@ console.log(productState);
                           </h4>
 
                           {/* <button class="add-to-cart-btn">
-        <i class="fa fa-shopping-cart"></i> add to cart
-      </button> */}
+                              <i class="fa fa-shopping-cart"></i> add to cart
+                            </button> */}
                         </div>
                       </div>
                     </>
                   );
-                })}
-              </InfiniteScroll>
+                })
+              )}
             </div>
+            <span style={{ float: "right" }}>
+              <ReactPaginate
+                breakLabel="..."
+                onPageChange={fetchMoreData}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={2}
+                pageCount={productState.totalAmount}
+                previousLabel="Pre"
+                renderOnZeroPageCount={null}
+                activeClassName="active"
+                containerClassName="pagination justify-content-center"
+                breakLinkClassName="page-link"
+                breakClassName="page-item"
+              />
+            </span>
           </div>
         </div>
       </div>

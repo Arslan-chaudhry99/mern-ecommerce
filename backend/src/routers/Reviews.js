@@ -31,4 +31,5 @@ router.get("/getReviews", async (req, res) => {
 
   res.send(data);
 });
+
 module.exports = router;

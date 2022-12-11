@@ -2,9 +2,14 @@ import React from "react";
 import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { findProducts } from "../Action";
+import { getMainData } from "../Action";
+import { useParams } from "react-router";
 import "./css/Nav.css";
 const Nav = () => {
   const showMenu = useRef();
+  const { name } = useParams();
   const Navigate = useNavigate();
   const expandNav = () => {
     if (showMenu.current.classList.contains("active")) {
@@ -13,6 +18,14 @@ const Nav = () => {
     return showMenu.current.classList.add("active");
   };
 
+  const SearchState = useSelector((state) => state.SearchProducts);
+  const dispatch = useDispatch();
+  const findProduct = (e) => {
+    dispatch(findProducts(e.target.value));
+  };
+const reloadData=()=>{
+  dispatch(getMainData(name));
+}
   return (
     <>
       <header>
@@ -42,7 +55,6 @@ const Nav = () => {
                   <option value="USD">USD</option>
                   <option value="Rupee">Rupee </option>
                 </select>
-                
               </li>
               <li style={{ cursor: "pointer" }}>
                 <a
@@ -60,20 +72,28 @@ const Nav = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-6">
-                <div className="header-search">
+                <div
+                  className="header-search"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
                   <form>
                     {/* <select className="input-select">
                       <option value="0">All Categories</option>
                       <option value="1">Category 01</option>
                       <option value="1">Category 02</option>
                     </select> */}
-                    <input className="input" placeholder="Search here" />
+                    <input
+                      className="input"
+                      placeholder="Search here"
+                      onChange={findProduct}
+                    />
                     <button className="search-btn">Search</button>
                   </form>
                 </div>
               </div>
 
-              <div className="col-md-3 clearfix">
+              {/* <div className="col-md-3 clearfix">
                 <div className="header-ctn">
                   <div>
                     <a
@@ -108,7 +128,7 @@ const Nav = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -141,6 +161,109 @@ const Nav = () => {
           </div>
         </nav>
       </header>
+      {/* <!-- Button trigger modal --> */}
+
+      {/* <!-- Modal --> */}
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-footer paddingsDataValues">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="header-search">
+                    <form>
+
+                      <input
+                        className="input"
+                        placeholder="Search here"
+                        onChange={findProduct}
+                      />
+                      <button className="search-btn">Search</button>
+                    </form>
+                    <div
+                      className="resultsDataNav"
+                      style={{
+                        height: "200px",
+                        overflowX: "hidden",
+                        overflowY: "scroll",
+                      }}
+                    >
+                      {SearchState.length !== 0 ? (
+                        SearchState.map((value) => {
+                          return (
+                            <>
+                              <NavLink to={"/Product/" + value.ProductName}>
+                                <div className="resultsDataNavContent" onClick={reloadData}>
+                                  <div className="MainImagesData" onClick={reloadData}>
+                                    <img
+                                      src={value.images[0]}
+                                      alt=""
+                                      style={{ width: "100%", height: "100%" }}
+                                    />
+                                  </div>
+                                  <div onClick={reloadData}>{value.ProductName}</div>
+                                </div>
+                              </NavLink>
+                            </>
+                          );
+                        })
+                      ) : (
+                        <div className="productResultsDatas">
+                          <h5>Result Not found!</h5>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* <div className="col-md-3 clearfix">
+                <div className="header-ctn">
+                  <div>
+                    <a
+                      onClick={() => {
+                        Navigate("/wishlist");
+                      }}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <i className="fa fa-heart-o"></i>
+                      <span>Your Wishlist</span>
+                      <div className="qty">2</div>
+                    </a>
+                  </div>
+
+                  <div
+                    className=""
+                    onClick={() => {
+                      Navigate("/cart");
+                    }}
+                  >
+                    <a style={{ cursor: "pointer" }}>
+                      <i className="fa fa-shopping-cart"></i>
+                      <span>Your Cart</span>
+                      <div className="qty">3</div>
+                    </a>
+                  </div>
+
+                  <div className="menu-toggle" onClick={expandNav}>
+                    <a>
+                      <i className="fa fa-bars"></i>
+                      <span>Menu</span>
+                    </a>
+                  </div>
+                </div>
+              </div> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

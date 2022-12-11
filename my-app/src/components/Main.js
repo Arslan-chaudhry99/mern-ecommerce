@@ -30,7 +30,7 @@ const Main = () => {
 
   const productState = useSelector((state) => state.ProductsDatas);
   const dispatch = useDispatch();
-
+console.log(productState);
   useEffect(() => {
     dispatch(getAllProductsData(""));
   }, []);
@@ -42,19 +42,13 @@ const Main = () => {
           return (
             <>
               <NavLink to={"/Product/" + values.ProductName}>
-                <div class="product productSliderMain container">
+                <div class="product productSliderMain-I container">
                   <div class="product-img">
                     <i class="fa fa-heart-o"></i>
                     <span className="CartTagLine">new</span>
-                    <img
-                      src={values.images[0]}
-                      alt="img"
-                      style={{
-                        width: "100%",
-                        height: "200px",
-                        objectFit: "cover",
-                      }}
-                    />
+                    <div className="mainSliderData">
+                      <img src={values.images[0]} alt="img" />
+                    </div>
                   </div>
                   {/* <div className="text-info reviewsForCard">
                   <span className="product-rating">

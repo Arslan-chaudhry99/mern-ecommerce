@@ -32,7 +32,6 @@ var upload = multer({
     }
   },
 });
-
 router.route("/createPost").post(upload.array("images", 20), (req, res) => {
   const reqFiles = [];
   const url = req.protocol + "://" + req.get("host");
@@ -93,9 +92,9 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
     network,
     pricing,
   } = req.body;
-
   const newPostData = {
-    ProductName: ProductName.toString().replaceAll(/\s/g, "-"),
+    ProductName: ProductName.toString().replaceAll(/\s/g, "-").toLowerCase(),
+    Search: ProductName.toString().replaceAll(/\s/g, "").toLowerCase(),
     BrandName: BrandName.toLowerCase(),
     CardSlot,
     InternalMemory,
@@ -157,31 +156,57 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
 });
 
 router.get("/getProducts", async (req, res) => {
-  const QueryName = req.query.QueryName;
-  const QueryValues = req.query.QueryValues;
+  const QueryName = req.query.QueryName ? req.query.QueryName : "";
+  const QueryValues = req.query.QueryValues ? req.query.QueryValues : "";
   const page = req.query.page;
-  const size = 3;
-  const skip = (page - 1) * size;
-  console.log(size, req.query.page, QueryName, QueryValues);
+  const size = 10;
+  const skip = page * size;
   if (QueryName !== "" && QueryValues !== "") {
-    const total = await Post.find({ [QueryValues]: QueryName });
-    console.log(total.length);
+    console.log("1*");
+    const total = await Post.find({ [QueryName]: QueryValues });
     if (total.length === 0) {
-      console.log("product length is zoro");
-
-      return res.status(200).json({ data: [], total: 0 });
+      console.log("1,2*" + QueryName + QueryValues);
+      return res.status(200).json({ data: total, total: 0 });
     } else {
-      const data = await Post.find({ [QueryValues]: { $in: QueryName } })
+      console.log("1,2 3*");
+      const data = await Post.find({ [QueryName]: QueryValues })
         .skip(skip)
         .limit(size);
-      console.log(total.length);
-      return res.status(200).json({ data: data, total: total.length });
+
+      return res
+        .status(200)
+        .json({ data: data, total: Math.ceil(total.length / size) });
     }
   } else {
-    const data = await Post.find({}).skip(skip).limit(size);
+    const Totals = await Post.countDocuments();
+    const data = await Post.aggregate([{ $sample: { size: Totals } }])
+      .skip(skip)
+      .limit(size);
+    console.log(Totals);
     const total = await Post.find();
-    return res.status(200).json({ data: data, total: total.length });
+    return res
+      .status(200)
+      .json({ data: data, total: Math.ceil(total.length / size) });
   }
 });
-
+// get all a desired product data
+router.get("/getMainData", async (req, res) => {
+  const find_data = req.query.name;
+  console.log(find_data);
+  const data = await Post.find({ ProductName: find_data });
+  return res.status(200).json({ data: data });
+});
+router.get("/findProducts", async (req, res) => {
+  const find_data = req.query.name.toLowerCase();
+  if (find_data === "") {
+    return res.status(200).json({ data: [] });
+  } else {
+    const reg = new RegExp(find_data.replaceAll(/\s/g, ""));
+    // console.log(reg);
+    const preson = await Post.find({
+      ProductName: { $regex: reg, $options: "gi" },
+    });
+    return res.status(200).json({ data: preson });
+  }
+});
 module.exports = router;
