@@ -2,15 +2,16 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "./css/Store.css";
 import { getAllProductsData } from "../Action";
+import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { useRef } from "react";
 import Filters from "./Filters/Filters";
 import ReactPaginate from "react-paginate";
 const Store = () => {
   const sidesWidth = useRef("");
+  const { Extquery } = useParams();
   const [Actual, setActual] = useState([]);
   const productState = useSelector((state) => state.ProductsDatas);
-  console.log(productState);
   const dispatch = useDispatch();
   const [Mores, setMores] = useState({ name: "", value: "" });
   const [MoreFil, setMoreFil] = useState(1);

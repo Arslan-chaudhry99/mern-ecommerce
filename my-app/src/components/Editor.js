@@ -101,7 +101,7 @@ const Editor = () => {
     formData.append("Description", PostData.Description);
     formData.append("RupeePrice", PostData.RupeePrice);
     formData.append("DollarPrice", PostData.DollarPrice);
-    formData.append("DarazLink", PostData.DollarPrice);
+    formData.append("DarazLink", PostData.DarazLink);
     formData.append("AmazonLink", PostData.AmazonLink);
     formData.append("PticeoyeLink", PostData.PticeoyeLink);
     formData.append("YoutubeLink", PostData.YoutubeLink);
@@ -153,6 +153,9 @@ const Editor = () => {
         <li className="nav-item">
           <a className="nav-link active">Reset Password</a>
         </li>
+        <li className="nav-item">
+          <a className="nav-link active">New Update</a>
+        </li>
       </ul>
       <div className="col-md-12" style={{ marginBottom: "100px" }}>
         <div id="product-tab">
@@ -161,7 +164,7 @@ const Editor = () => {
               name="BrandName"
               className="searchByNettwork"
               onChange={handleChangeFilter}
-              style={{marginRight:"10px"}}
+              style={{ marginRight: "10px" }}
             >
               <option value="">Search By Brands</option>
               <option value="samsung">Samsung</option>
@@ -201,7 +204,7 @@ const Editor = () => {
               name="network"
               className="searchByNettwork"
               onChange={handleChangeFilter}
-              style={{marginRight:"10px"}}
+              style={{ marginRight: "10px" }}
             >
               <option value="">Search By Network</option>
               <option value="5G">5G Mobile Prices</option>
@@ -211,7 +214,7 @@ const Editor = () => {
               name="RAMS"
               className="searchByNettwork"
               onChange={handleChangeFilter}
-              style={{marginRight:"10px"}}
+              style={{ marginRight: "10px" }}
             >
               <option value="">Search By RAM</option>
               <option value="2GB">2GB RAM</option>
@@ -225,7 +228,7 @@ const Editor = () => {
               name="pricing"
               className="searchByNettwork"
               onChange={handleChangeFilter}
-              style={{marginRight:"10px"}}
+              style={{ marginRight: "10px" }}
             >
               <option value="">Search By Prices</option>
               <option value="45000-to-above">Rs. 45000 & Above</option>
@@ -241,7 +244,7 @@ const Editor = () => {
               id=""
               className="searchByNettwork"
               onChange={handleChangeFilter}
-              style={{marginRight:"10px"}}
+              style={{ marginRight: "10px" }}
             >
               <option>Search By CAM</option>
               <option value="13MGA">13 Megapixel</option>

@@ -5,12 +5,35 @@ import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { findProducts } from "../Action";
 import { getMainData } from "../Action";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import { useParams } from "react-router";
+import { useState } from "react";
 import "./css/Nav.css";
 const Nav = () => {
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 10,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 8,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 6,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 3,
+    },
+  };
   const showMenu = useRef();
   const { name } = useParams();
   const Navigate = useNavigate();
+  const [ServerData, setServerData] = useState({ BrandName: "" });
   const expandNav = () => {
     if (showMenu.current.classList.contains("active")) {
       return showMenu.current.classList.remove("active");
@@ -23,9 +46,47 @@ const Nav = () => {
   const findProduct = (e) => {
     dispatch(findProducts(e.target.value));
   };
-const reloadData=()=>{
-  dispatch(getMainData(name));
-}
+  const reloadData = () => {
+    dispatch(getMainData(name));
+  };
+  let allNavElement = [
+    "samsung",
+    "vivo",
+    "oppo",
+    "infinix",
+    "realme",
+    "nokia",
+    "apple",
+    "xiaomi",
+    "tecno",
+    "huawei",
+    "qmobile",
+    "itel",
+    "onePlus",
+    "sony",
+    "honor",
+    "htC",
+    "meizu",
+    "lg",
+    "mobilink",
+    "lenovo",
+    "motorola",
+    "blackberry",
+    "alcatel",
+    "oPhone",
+    "calme",
+    "gright",
+    "gfive",
+    "club",
+    "rivo",
+    "microsoft",
+    "voice",
+    "haier",
+  ];
+  const getCurrentInfo = (query) => {
+    setServerData({ BrandName: query });
+  };
+  console.log(ServerData);
   return (
     <>
       <header>
@@ -93,7 +154,7 @@ const reloadData=()=>{
                 </div>
               </div>
 
-              {/* <div className="col-md-3 clearfix">
+              <div className="col-md-3 clearfix">
                 <div className="header-ctn">
                   <div>
                     <a
@@ -102,9 +163,9 @@ const reloadData=()=>{
                       }}
                       style={{ cursor: "pointer" }}
                     >
-                      <i className="fa fa-heart-o"></i>
-                      <span>Your Wishlist</span>
-                      <div className="qty">2</div>
+                      <i class="fa fa-bell"></i>
+                      <span>Notification</span>
+                      <div className="qty">0</div>
                     </a>
                   </div>
 
@@ -114,11 +175,11 @@ const reloadData=()=>{
                       Navigate("/cart");
                     }}
                   >
-                    <a style={{ cursor: "pointer" }}>
+                    {/* <a style={{ cursor: "pointer" }}>
                       <i className="fa fa-shopping-cart"></i>
                       <span>Your Cart</span>
                       <div className="qty">3</div>
-                    </a>
+                    </a> */}
                   </div>
 
                   <div className="menu-toggle" onClick={expandNav}>
@@ -128,11 +189,11 @@ const reloadData=()=>{
                     </a>
                   </div>
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
-        <nav id="navigation" style={{ border: "0" }}>
+        <nav id="navigation">
           <div class="container">
             <div id="responsive-nav" ref={showMenu} className="">
               <ul class="main-nav nav navbar-nav">
@@ -146,7 +207,7 @@ const reloadData=()=>{
                     <a>Store</a>
                   </NavLink>
                 </li>
-               
+
                 <li>
                   <NavLink to="/contact">
                     <a>Contact</a>
@@ -155,6 +216,36 @@ const reloadData=()=>{
               </ul>
             </div>
           </div>
+        </nav>
+        <nav>
+          <ul className="MainDataValuesNavs container">
+            <Carousel
+              responsive={responsive}
+              className="container"
+              autoPlay={true}
+              interval={2000}
+              showArrows={false}
+            >
+              {allNavElement.map((value) => {
+                return (
+                  <>
+                    <NavLink to={"/store/" + value}>
+                      <li
+                        className="nav-item"
+                        onClick={() => {
+                          getCurrentInfo(value);
+                        }}
+                      >
+                        <a className="MobilesNavigation">
+                          {value.toLocaleUpperCase()}
+                        </a>
+                      </li>
+                    </NavLink>
+                  </>
+                );
+              })}
+            </Carousel>
+          </ul>
         </nav>
       </header>
       {/* <!-- Button trigger modal --> */}
@@ -175,7 +266,6 @@ const reloadData=()=>{
                 <div className="col-md-12">
                   <div className="header-search">
                     <form>
-
                       <input
                         className="input"
                         placeholder="Search here"
@@ -196,15 +286,23 @@ const reloadData=()=>{
                           return (
                             <>
                               <NavLink to={"/Product/" + value.ProductName}>
-                                <div className="resultsDataNavContent" onClick={reloadData}>
-                                  <div className="MainImagesData" onClick={reloadData}>
+                                <div
+                                  className="resultsDataNavContent"
+                                  onClick={reloadData}
+                                >
+                                  <div
+                                    className="MainImagesData"
+                                    onClick={reloadData}
+                                  >
                                     <img
                                       src={value.images[0]}
                                       alt=""
                                       style={{ width: "100%", height: "100%" }}
                                     />
                                   </div>
-                                  <div onClick={reloadData}>{value.ProductName}</div>
+                                  <div onClick={reloadData}>
+                                    {value.ProductName}
+                                  </div>
                                 </div>
                               </NavLink>
                             </>

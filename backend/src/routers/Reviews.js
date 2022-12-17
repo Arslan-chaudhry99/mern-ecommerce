@@ -12,7 +12,7 @@ router.post("/submiteReview", async (req, res) => {
     description,
     rating,
     IP: req.socket.remoteAddress,
-    Date: Date,
+
   };
 
   const dataVals = await Review.find({ IP: req.socket.remoteAddress });
@@ -28,8 +28,7 @@ router.post("/submiteReview", async (req, res) => {
 router.get("/getReviews", async (req, res) => {
   const find_data = req.query.id;
   const data = await Review.find({ ID: find_data });
-
-  res.send(data);
+  return res.status(200).json({ data: data });
 });
 
 module.exports = router;

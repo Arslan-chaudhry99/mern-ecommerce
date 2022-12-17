@@ -39,14 +39,13 @@
   border-radius: 0px;
 }
 .productResultsDatas {
-
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.productResultsDatas h5{
+.productResultsDatas h5 {
   color: #6c757d;
 }
 ::-webkit-scrollbar {
@@ -64,7 +63,23 @@
   border: 0.3vw solid #ffffff;
   border-radius: 5vw;
 }
-.resultsDataNav{
+.resultsDataNav {
   scrollbar-color: #ffffff #333 !important;
   scrollbar-width: thin !important;
+}
+.MobilesNavigation {
+  width: 112px;
+  height: 40px;
+  background-color: #138496;
+  color: white;
+  font-weight: 400;
+  padding: 6px 8px;
+  margin-left: 10px;
+}
+.MainDataValuesNavs{
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+ 
+  
 }

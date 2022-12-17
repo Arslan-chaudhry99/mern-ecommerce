@@ -31,6 +31,7 @@ function App() {
               <Route path="/" element={<Share />}>
                 <Route path="/" element={<Main />} />
                 <Route path="/store" element={<Store />} />
+                <Route path="/store/:Extquery" element={<Store />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/Signup" element={<Signup />} />

@@ -3,7 +3,7 @@ import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
 import "./css/Product.css";
 import { getMainData } from "../Action";
-
+import { getAllReviews } from "../Action";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
@@ -16,7 +16,7 @@ const Product = () => {
   const dispatch = useDispatch();
 
   const reviewState = useSelector((state) => state.ReviewsDatas);
-
+  console.log(reviewState);
   // set feedback
   const [Reviews, setReviews] = useState({
     ID: name,
@@ -43,7 +43,7 @@ const Product = () => {
 
   useEffect(() => {
     dispatch(getMainData(name));
-    // dispatch(getAllReviews(name));
+    dispatch(getAllReviews(name));
   }, []);
 
   const responsive = {
@@ -81,8 +81,18 @@ const Product = () => {
                           {value.images.map((value) => {
                             return (
                               <>
-                                <div style={{display:"flex",justifyContent:"center",alignItems:"center"}} >
-                                  <img src={value} alt="img" style={{width:"250px",height:"250px",}}  />
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  <img
+                                    src={value}
+                                    alt="img"
+                                    style={{ width: "250px", height: "250px" }}
+                                  />
                                 </div>
                               </>
                             );
@@ -160,14 +170,17 @@ const Product = () => {
                           {/* <strong>Amazon (buy now!):</strong> {value.AmazonLink} */}
                         </li>
                         <li>
-                          <strong>Amazon (buy now!):</strong> {value.AmazonLink}
+                          <strong>Amazon (buy now!):</strong>
+                          <a href={value.AmazonLink}>{value.AmazonLink}</a>
+                        </li>
+
+                        <li>
+                          <strong>Pticeoye (buy now!):</strong>
+                          <a href={value.PticeoyeLink}>{value.PticeoyeLink}</a>
                         </li>
                         <li>
-                          <strong>Pticeoye (buy now!):</strong>{" "}
-                          {value.PticeoyeLink}
-                        </li>
-                        <li>
-                          <strong>Daraz (buy now!):</strong> {value.DarazLink}
+                          <strong>Daraz (buy now!):</strong>
+                          <a href={value.DarazLink}>{value.DarazLink}</a>
                         </li>
                       </ul>
                     </div>
@@ -742,6 +755,7 @@ const Product = () => {
       </div> */}
                   <Carousel responsive={responsive}>
                     {reviewState.map((data) => {
+                      console.log(data.dates);
                       return (
                         <>
                           <div id="reviews">
@@ -755,10 +769,10 @@ const Product = () => {
                                   <p className="date">27 DEC 2018, 8:0 PM</p>
                                   <div className="review-rating">
                                     <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star-o empty"></i>
+
+                                    <span style={{ color: "black" }}>
+                                      {data.rating}
+                                    </span>
                                   </div>
                                 </div>
                                 <div className="review-body">

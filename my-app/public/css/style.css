@@ -702,6 +702,7 @@ textarea.input {
     left: 0;
     top: 0;
     background: #15161d;
+    color: white;
     height: 100vh;
     max-width: 250px;
     width: 0%;
@@ -901,8 +902,8 @@ textarea.input {
 .product .product-img > img {
   width: 100%;
 
-object-fit: cover;
-object-position: top;
+  object-fit: cover;
+  object-position: top;
 }
 
 .product .product-img .product-label {
@@ -1641,7 +1642,6 @@ object-position: top;
 
 .product-details .product-links li {
   display: inline-block;
-  text-transform: uppercase;
   font-size: 12px;
 }
 
@@ -2224,6 +2224,12 @@ object-position: top;
 }
 
 @media only screen and (max-width: 767px) {
+  a .productSliderMain-I {
+    width: 90%;
+  }
+  .main-nav > li > a > a {
+    color: white;
+  }
   .section-title .section-nav {
     float: none;
     margin-top: 10px;
@@ -2234,6 +2240,9 @@ object-position: top;
 }
 
 @media only screen and (max-width: 480px) {
+  a .productSliderMain-I {
+    width: 90%;
+  }
   [class*="col-xs"] {
     width: 100%;
   }

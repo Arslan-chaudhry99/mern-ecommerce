@@ -59,7 +59,7 @@ const Main = () => {
     <>
       <div style={{ marginTop: "30xp", marginBottom: "30px" }}>
         <Carousel responsive={responsive_slide}>
-          <div className="container mainPagelider">
+          <div className="container mainPagelider ">
             <img src={myImage} alt="img" style={{ width: "100%" }} />
           </div>
           <div className="container mainPagelider">

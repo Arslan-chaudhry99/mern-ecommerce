@@ -92,6 +92,7 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
     network,
     pricing,
   } = req.body;
+  console.log(DarazLink);
   const newPostData = {
     ProductName: ProductName.toString().replaceAll(/\s/g, "-").toLowerCase(),
     Search: ProductName.toString().replaceAll(/\s/g, "").toLowerCase(),
@@ -136,9 +137,9 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
     Description,
     RupeePrice,
     DollarPrice,
-    DarazLink,
-    AmazonLink,
-    PticeoyeLink,
+    DarazLink: DarazLink.toLowerCase(),
+    AmazonLink: AmazonLink.toLowerCase(),
+    PticeoyeLink: PticeoyeLink.toLowerCase(),
     images: reqFiles,
     YoutubeLink,
     RAMS,

@@ -18,7 +18,7 @@ export const getAllProductsData = (names, page) => async (disatch) => {
 // get main product data
 export const getMainData = (ids) => async (disatch) => {
   const res = await axios.get(`/getMainData?name=${ids}`);
-  console.log(res.data.data);
+
   disatch({
     type: "getMainData",
     payload: res.data.data,
@@ -27,9 +27,10 @@ export const getMainData = (ids) => async (disatch) => {
 // get all prodyct reviews
 export const getAllReviews = (ids) => async (disatch) => {
   const res = await axios.get(`/getReviews?id=${ids}`);
+  console.log(res);
   disatch({
     type: "getAllReviews",
-    payload: res.data,
+    payload: res.data.data,
   });
 };
 
