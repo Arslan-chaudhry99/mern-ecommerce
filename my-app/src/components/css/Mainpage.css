@@ -8,17 +8,28 @@
   align-items: center;
 }
 .productSliderMain-I {
-  width: 210px;
+  width: 200px;
 }
-.mainSliderData{
+.mainSliderData {
   width: 100%;
   /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.mainSliderData img{
+.mainSliderData img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+.mainPagelider {
+  max-width: 1000px;
+  position: "relative";
+  box-sizing: border-box;
+}
+/* style={{
+  maxWidth: "",
+  ,
+  
+  marginBottom:"30px"
+}} */

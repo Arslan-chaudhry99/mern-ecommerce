@@ -16,26 +16,42 @@ import Profile from "./components/Profile";
 import Fav from "./components/Fav";
 import Editor from "./components/Editor";
 import Preview from "./components/Preview";
+import Error from "./components/Error";
+import Cookies from "js-cookie";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
+  const auth = Cookies.get("userToken");
+  console.log(auth);
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Share />}>
-            <Route path="/" element={<Main />} />
-            <Route path="/store" element={<Store />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/Signup" element={<Signup />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Cart" element={<Cart />} />
-            <Route path="/Profile" element={<Profile />} />
-            <Route path="/wishlist" element={<Fav />} />
-            <Route path="/Product/:name" element={<Product />} />
-          </Route>
-          <Route path="/Editor" element={<Editor />} />
-          <Route path="/Preview" element={<Preview />} />
+          {
+            <>
+              <Route path="/" element={<Share />}>
+                <Route path="/" element={<Main />} />
+                <Route path="/store" element={<Store />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/Signup" element={<Signup />} />
+                <Route path="/Login" element={<Login />} />
+                <Route path="/Cart" element={<Cart />} />
+                <Route path="/Profile" element={<Profile />} />
+                <Route path="/wishlist" element={<Fav />} />
+                <Route path="/Product/:name" element={<Product />} />
+              </Route>
+
+              <Route path="*" element={<Error />} />
+            </>
+          }
+          {!true ? (
+            <Route path="*" element={<Error />} />
+          ) : (
+            <>
+              <Route path="/Editor" element={<Editor />} />
+              <Route path="/Preview" element={<Preview />} />
+            </>
+          )}
         </Routes>
       </BrowserRouter>
     </>

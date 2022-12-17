@@ -143,9 +143,17 @@ const Editor = () => {
     value = e.target.value;
     setPostData({ ...PostData, [name]: value });
   };
- 
+
   return (
     <>
+      <ul className="nav" style={{ display: "flex" }}>
+        <li className="nav-item">
+          <a className="nav-link active">Create Post</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link active">Reset Password</a>
+        </li>
+      </ul>
       <div className="col-md-12" style={{ marginBottom: "100px" }}>
         <div id="product-tab">
           <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -153,6 +161,7 @@ const Editor = () => {
               name="BrandName"
               className="searchByNettwork"
               onChange={handleChangeFilter}
+              style={{marginRight:"10px"}}
             >
               <option value="">Search By Brands</option>
               <option value="samsung">Samsung</option>
@@ -192,6 +201,7 @@ const Editor = () => {
               name="network"
               className="searchByNettwork"
               onChange={handleChangeFilter}
+              style={{marginRight:"10px"}}
             >
               <option value="">Search By Network</option>
               <option value="5G">5G Mobile Prices</option>
@@ -201,6 +211,7 @@ const Editor = () => {
               name="RAMS"
               className="searchByNettwork"
               onChange={handleChangeFilter}
+              style={{marginRight:"10px"}}
             >
               <option value="">Search By RAM</option>
               <option value="2GB">2GB RAM</option>
@@ -214,11 +225,11 @@ const Editor = () => {
               name="pricing"
               className="searchByNettwork"
               onChange={handleChangeFilter}
+              style={{marginRight:"10px"}}
             >
               <option value="">Search By Prices</option>
               <option value="45000-to-above">Rs. 45000 & Above</option>
               <option value="35000-to-45001">Rs. 35000 to 45001</option>
-              <option value="25000-to-35001">Rs. 25000 to 35001</option>
               <option value="25000-to-35001">Rs. 25000 to 35001</option>
               <option value="15000-to-25000">Rs. 15000 to 25000</option>
               <option value="10000-to-15001">Rs. 10000 to 15001</option>
@@ -230,6 +241,7 @@ const Editor = () => {
               id=""
               className="searchByNettwork"
               onChange={handleChangeFilter}
+              style={{marginRight:"10px"}}
             >
               <option>Search By CAM</option>
               <option value="13MGA">13 Megapixel</option>

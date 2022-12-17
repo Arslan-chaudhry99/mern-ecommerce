@@ -4,7 +4,8 @@ const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config({ path: path.join(__dirname, "./config.env") });
 app.use("/public", express.static("public"));
-
+const cookieParser = require('cookie-parser');
+app.use(cookieParser())
 app.use(express.json());
 const PORT = process.env.PORT || 5000
 

@@ -48,7 +48,7 @@ const reloadData=()=>{
                 </a>
               </li>
             </ul>
-            <ul className="header-links pull-right">
+            {/* <ul className="header-links pull-right">
               <li>
                 <select name="" id="" className="slectAcurrency">
                   <option value="">Select Currency</option>
@@ -65,7 +65,7 @@ const reloadData=()=>{
                   <i className="fa fa-user-o"></i> My Account
                 </a>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
         <div id="header">
@@ -146,11 +146,7 @@ const reloadData=()=>{
                     <a>Store</a>
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to="/about">
-                    <a>About</a>
-                  </NavLink>
-                </li>
+               
                 <li>
                   <NavLink to="/contact">
                     <a>Contact</a>
@@ -190,7 +186,7 @@ const reloadData=()=>{
                     <div
                       className="resultsDataNav"
                       style={{
-                        height: "200px",
+                        height: "100px",
                         overflowX: "hidden",
                         overflowY: "scroll",
                       }}
