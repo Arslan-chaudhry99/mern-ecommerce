@@ -50,7 +50,6 @@ const Main = () => {
 
   const productState = useSelector((state) => state.ProductsDatas);
   const dispatch = useDispatch();
-  console.log(productState);
   useEffect(() => {
     dispatch(getAllProductsData(""));
   }, []);

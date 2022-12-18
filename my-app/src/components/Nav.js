@@ -8,9 +8,10 @@ import { getMainData } from "../Action";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useParams } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./css/Nav.css";
 const Nav = () => {
+  // brand slider
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -30,25 +31,31 @@ const Nav = () => {
       items: 3,
     },
   };
+  // main hooks
   const showMenu = useRef();
   const { name } = useParams();
   const Navigate = useNavigate();
-  const [ServerData, setServerData] = useState({ BrandName: "" });
+  // main hooks
+  // <---for expanding navbar--->
   const expandNav = () => {
     if (showMenu.current.classList.contains("active")) {
       return showMenu.current.classList.remove("active");
     }
     return showMenu.current.classList.add("active");
   };
-
-  const SearchState = useSelector((state) => state.SearchProducts);
+  // redux selector
   const dispatch = useDispatch();
+  const SearchState = useSelector((state) => state.SearchProducts);
+
+  // set input data
   const findProduct = (e) => {
     dispatch(findProducts(e.target.value));
   };
+  // to load searching products
   const reloadData = () => {
     dispatch(getMainData(name));
   };
+  // All brands for slider
   let allNavElement = [
     "samsung",
     "vivo",
@@ -83,10 +90,8 @@ const Nav = () => {
     "voice",
     "haier",
   ];
-  const getCurrentInfo = (query) => {
-    setServerData({ BrandName: query });
-  };
-  console.log(ServerData);
+
+
   return (
     <>
       <header>
@@ -229,12 +234,10 @@ const Nav = () => {
               {allNavElement.map((value) => {
                 return (
                   <>
-                    <NavLink to={"/store/" + value}>
+                    <NavLink to={"/store" }>
                       <li
                         className="nav-item"
-                        onClick={() => {
-                          getCurrentInfo(value);
-                        }}
+                        
                       >
                         <a className="MobilesNavigation">
                           {value.toLocaleUpperCase()}

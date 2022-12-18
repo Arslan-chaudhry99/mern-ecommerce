@@ -3,6 +3,7 @@ import "./Login.css";
 import axios from "axios";
 import { useState } from "react";
 const Login = () => {
+  
   const [userInfo, setuserInfo] = useState({ username: "", password: "" });
   let name;
   let value;
@@ -11,10 +12,10 @@ const Login = () => {
     value = event.target.value;
     setuserInfo({ ...userInfo, [name]: value });
   };
-  console.log(userInfo);
   const Login_Now = async (e) => {
     e.preventDefault();
-    const res = await axios.post("/admin", userInfo);
+    const res = await axios.post("/admin", userInfo)
+    console.log(res);
   };
 
   return (

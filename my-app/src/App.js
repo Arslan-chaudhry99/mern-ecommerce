@@ -15,13 +15,13 @@ import Cart from "./components/Cart";
 import Profile from "./components/Profile";
 import Fav from "./components/Fav";
 import Editor from "./components/Editor";
-import Preview from "./components/Preview";
+import Resetpassword from "./components/Resetpassword";
 import Error from "./components/Error";
 import Cookies from "js-cookie";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   const auth = Cookies.get("userToken");
-  console.log(auth);
+
   return (
     <>
       <BrowserRouter>
@@ -45,12 +45,12 @@ function App() {
               <Route path="*" element={<Error />} />
             </>
           }
-          {!true ? (
+          {!auth ? (
             <Route path="*" element={<Error />} />
           ) : (
             <>
               <Route path="/Editor" element={<Editor />} />
-              <Route path="/Preview" element={<Preview />} />
+              <Route path="/Resetpassword" element={<Resetpassword />} />
             </>
           )}
         </Routes>

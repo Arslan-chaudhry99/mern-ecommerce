@@ -185,8 +185,8 @@ const Store = () => {
               style={{ display: "flex", flexWrap: "wrap" }}
             >
               {productState.content.length === 0 ? (
-                <div className="alert alert-danger error_alert"  role="alert">
-                <strong>No product! </strong>is available.
+                <div className="alert alert-danger error_alert" role="alert">
+                  <strong>No product! </strong>is available.
                 </div>
               ) : (
                 productState.content.map((value) => {
