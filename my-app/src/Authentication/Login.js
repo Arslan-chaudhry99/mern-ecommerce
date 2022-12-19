@@ -5,9 +5,13 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 const Login = () => {
+  // acess cookies
   const auth = Cookies.get("userToken");
+  // navigation
   const navigate = useNavigate();
+  // login information
   const [userInfo, setuserInfo] = useState({ username: "", password: "" });
+  // set login information
   let name;
   let value;
   const Set_UserInfo = (event) => {
@@ -15,6 +19,7 @@ const Login = () => {
     value = event.target.value;
     setuserInfo({ ...userInfo, [name]: value });
   };
+  // login request
   const Login_Now = async (e) => {
     e.preventDefault();
     const res = await axios.post("/admin", userInfo);
@@ -25,33 +30,43 @@ const Login = () => {
       }, 1000);
     }
   };
-
+  // go to main
+  const gotoEditor = () => {
+    navigate("/Editor");
+  };
   return (
     <>
-      <div id="login-box1">
-        <div class="left">
-          <h1>Login Admin</h1>
-          <form method="post">
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              onChange={Set_UserInfo}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={Set_UserInfo}
-            />
-            <input
-              type="submit"
-              name="signup_submit"
-              value="Login Now"
-              onClick={Login_Now}
-            />
-          </form>
-          {/* <div class="or">OR</div>
+      {!auth ? (
+        <>
+          <div id="login-box1">
+            <div class="left">
+              <h1>Login Admin</h1>
+              <form method="post">
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  onChange={Set_UserInfo}
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={Set_UserInfo}
+                />
+                <div className="forgotpass">
+                  <a>
+                    <strong>Recover Password</strong>
+                  </a>
+                </div>
+                <input
+                  type="submit"
+                  name="signup_submit"
+                  value="Login Now"
+                  onClick={Login_Now}
+                />
+              </form>
+              {/* <div class="or">OR</div>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <button class="social-signin facebook">
               <i class="fa fa-facebook"></i>
@@ -63,8 +78,15 @@ const Login = () => {
               <i class="fa fa-google"></i>
             </button>
           </div> */}
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="alert alert-danger error_alert" role="alert">
+          You are already login.{" "}
+          <strong onClick={gotoEditor}>Click here!</strong>
         </div>
-      </div>
+      )}
     </>
   );
 };

@@ -85,5 +85,12 @@ router.post("/admin", async (req, res) => {
     () => res.status(500).json({ error: " Login failed" });
   }
 });
+// logout user
+router.post("/logout", (req, res) => {
+  res
+    .status(200)
+    .clearCookie("userToken")
+    .json({ message: "Logout Successfully" });
+});
 
 module.exports = router;

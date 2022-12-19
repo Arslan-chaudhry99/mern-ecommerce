@@ -66,7 +66,7 @@ const Signup = () => {
         pauseOnHover
         theme="dark"
       />
-      <button> value is{incrementResult}</button>
+
       <div id="login-box">
         <div class="left">
           <h1>Sign up</h1>

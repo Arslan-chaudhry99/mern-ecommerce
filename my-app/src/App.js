@@ -34,12 +34,12 @@ function App() {
                 <Route path="/store/:Extquery" element={<Store />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/Signup" element={<Signup />} />
                 <Route path="/Cart" element={<Cart />} />
                 <Route path="/Profile" element={<Profile />} />
                 <Route path="/wishlist" element={<Fav />} />
                 <Route path="/Product/:name" element={<Product />} />
               </Route>
+              <Route path="/Signup" element={<Signup />} />
               <Route path="/admin" element={<Login />} />
               <Route path="*" element={<Error />} />
             </>

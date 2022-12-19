@@ -150,3 +150,7 @@
              width: 100%;
            }
          }
+         .forgotpass{
+          margin-bottom: 10px;
+          cursor: pointer;
+         }
