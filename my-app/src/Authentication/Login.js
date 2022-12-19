@@ -1,9 +1,12 @@
 import React from "react";
 import "./Login.css";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 const Login = () => {
-  
+  const auth = Cookies.get("userToken");
+  const navigate = useNavigate();
   const [userInfo, setuserInfo] = useState({ username: "", password: "" });
   let name;
   let value;
@@ -14,15 +17,20 @@ const Login = () => {
   };
   const Login_Now = async (e) => {
     e.preventDefault();
-    const res = await axios.post("/admin", userInfo)
-    console.log(res);
+    const res = await axios.post("/admin", userInfo);
+    if ((await res).status === 200) {
+      setTimeout(() => {
+        navigate("/Editor");
+        window.location.reload();
+      }, 1000);
+    }
   };
 
   return (
     <>
       <div id="login-box1">
         <div class="left">
-          <h1>Login</h1>
+          <h1>Login Admin</h1>
           <form method="post">
             <input
               type="text"
@@ -43,7 +51,7 @@ const Login = () => {
               onClick={Login_Now}
             />
           </form>
-          <div class="or">OR</div>
+          {/* <div class="or">OR</div>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <button class="social-signin facebook">
               <i class="fa fa-facebook"></i>
@@ -54,7 +62,7 @@ const Login = () => {
             <button class="social-signin google">
               <i class="fa fa-google"></i>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

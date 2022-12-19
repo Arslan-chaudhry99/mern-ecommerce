@@ -24,7 +24,6 @@ const ReviewsSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-
 });
 
 const ProductReviews = new mongoose.model("Reviews", ReviewsSchema);

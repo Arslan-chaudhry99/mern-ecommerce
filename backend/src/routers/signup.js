@@ -4,7 +4,7 @@ require("../DB/db");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+// to create a new user
 router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
   const findEmail = await Signupuser.findOne({ email: email });
@@ -21,6 +21,7 @@ router.post("/signup", async (req, res) => {
     console.log("user already exist");
   }
 });
+// to reset password.
 router.post("/ResetPassword", async (req, res) => {
   const { New, Old, username } = req.body;
   try {
@@ -41,7 +42,9 @@ router.post("/ResetPassword", async (req, res) => {
           }
         );
         if (resFromServer) {
-          return res.status(200).json({ message: "Password update successfuly." });
+          return res
+            .status(200)
+            .json({ message: "Password update successfuly." });
         }
         return res.status(200).json({ error: "Try again later." });
       }
@@ -54,6 +57,7 @@ router.post("/ResetPassword", async (req, res) => {
     return res.status(500).json({ error: "server error.Try again later!" });
   }
 });
+// to login a user
 router.post("/admin", async (req, res) => {
   const { username, password } = req.body;
 

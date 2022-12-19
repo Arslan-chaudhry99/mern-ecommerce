@@ -2,7 +2,7 @@ import React from "react";
 import "./css/Aditor.css";
 import { useState } from "react";
 import axios from "axios";
-
+import Authnav from "./Authnav";
 const Editor = () => {
   const [PostData, setPostData] = useState({
     ProductName: "",
@@ -146,17 +146,7 @@ const Editor = () => {
 
   return (
     <>
-      <ul className="nav" style={{ display: "flex" }}>
-        <li className="nav-item">
-          <a className="nav-link active">Create Post</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link active">Reset Password</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link active">New Update</a>
-        </li>
-      </ul>
+      <Authnav />
       <div className="col-md-12" style={{ marginBottom: "100px" }}>
         <div id="product-tab">
           <form onSubmit={handleSubmit} encType="multipart/form-data">

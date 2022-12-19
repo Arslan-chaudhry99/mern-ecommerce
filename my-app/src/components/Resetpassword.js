@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import Authnav from "./Authnav";
 const Resetpassword = () => {
   const [Reset, setReset] = useState({
     Old: "",
     New: "",
     ReNew: "",
-    username:""
+    username: "",
   });
   const setInfor = (e) => {
     let value = e.target.value;
@@ -15,14 +16,15 @@ const Resetpassword = () => {
   };
   const signup_submit = async (event) => {
     event.preventDefault();
-    const { New, ReNew ,Old,username} = Reset;
+    const { New, ReNew, Old, username } = Reset;
     if (New !== ReNew) {
       return alert("confom password not the same.");
     }
-    let res = await axios.post("/ResetPassword", { New ,Old,username});
+    let res = await axios.post("/ResetPassword", { New, Old, username });
   };
   return (
     <>
+      <Authnav />
       <div id="login-box1">
         <div class="left">
           <h1>Reset Password</h1>

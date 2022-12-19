@@ -12,7 +12,6 @@ router.post("/submiteReview", async (req, res) => {
     description,
     rating,
     IP: req.socket.remoteAddress,
-
   };
 
   const dataVals = await Review.find({ IP: req.socket.remoteAddress });
