@@ -16,6 +16,7 @@ import Profile from "./components/Profile";
 import Fav from "./components/Fav";
 import Resetpass from "./components/Resetpass";
 import Editor from "./components/Editor";
+import Changepassword from "./components/Changepassword";
 import Resetpassword from "./components/Resetpassword";
 import Error from "./components/Error";
 import Cookies from "js-cookie";
@@ -40,9 +41,13 @@ function App() {
                 <Route path="/wishlist" element={<Fav />} />
                 <Route path="/Product/:name" element={<Product />} />
               </Route>
-              <Route path="/Signup" element={<Signup />} />
+             
               <Route path="/admin" element={<Login />} />
-              <Route path="/Resetpass" element={<Resetpass />} />
+              <Route path="/reset_password_now" element={<Resetpass />} />
+              <Route
+                path="/change_password_now/:id/:token"
+                element={<Changepassword />}
+              />
               <Route path="*" element={<Error />} />
             </>
           }
@@ -52,6 +57,7 @@ function App() {
             <>
               <Route path="/Editor" element={<Editor />} />
               <Route path="/Resetpassword" element={<Resetpassword />} />
+              <Route path="/Signup" element={<Signup />} />
             </>
           )}
         </Routes>

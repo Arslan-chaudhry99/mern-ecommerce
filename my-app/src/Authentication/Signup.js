@@ -69,7 +69,7 @@ const Signup = () => {
 
       <div id="login-box">
         <div class="left">
-          <h1>Sign up</h1>
+          <h1>Add New User</h1>
           <div className="userImages">
             <img src="./img/Arslanch.png" alt="" />
           </div>
@@ -98,10 +98,10 @@ const Signup = () => {
               onChange={Setupsignup}
               placeholder="Retype password"
             />
-            <input type="submit" onClick={signUpUser} value="Sign me up" />
+            <input type="submit" onClick={signUpUser} value="Add now!" />
           </form>
-          <div class="or">OR</div>
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
+          {/* <div class="or">OR</div> */}
+          {/* <div style={{ display: "flex", justifyContent: "space-around" }}>
             <button class="social-signin facebook">
               <i class="fa fa-facebook"></i>
             </button>
@@ -111,7 +111,7 @@ const Signup = () => {
             <button class="social-signin google">
               <i class="fa fa-google"></i>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

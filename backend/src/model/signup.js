@@ -22,6 +22,9 @@ const signup = new mongoose.Schema({
       },
     },
   ],
+  veryfiyuser: {
+    type: String,
+  },
 });
 signup.methods.generateAuthToken = async function () {
   try {
@@ -33,5 +36,6 @@ signup.methods.generateAuthToken = async function () {
     console.log(error);
   }
 };
+
 const Signupuser = new mongoose.model("signup", signup);
 module.exports = Signupuser;

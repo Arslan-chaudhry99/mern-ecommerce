@@ -1,10 +1,15 @@
 import React from "react";
+import { useParams } from "react-router";
 import { useState } from "react";
 import axios from "axios";
-const Resetpass = () => {
+const Changepassword = () => {
+  const { id, token } = useParams();
   const [Reset, setReset] = useState({
-    email: "",
+    password: "",
+    id: id,
+    token: token,
   });
+
   const setInfor = (e) => {
     let value = e.target.value;
     let name = e.target.name;
@@ -13,30 +18,28 @@ const Resetpass = () => {
   const signup_submit = async (event) => {
     event.preventDefault();
     const { email } = Reset;
-    if (!email) {
-      return alert("confom password not the same.");
+    if (!email || !id || !token) {
+      return alert("Please enter password before continue");
     }
-    let res = await axios.post("/sendpasswordlink", Reset);
-    console.log(await res);
+    let res = await axios.post("/changePassword", Reset);
   };
   return (
     <>
-      <div id="login-box2">
+      <div id="login-box3">
         <div class="left">
-          <h1>Reset Password</h1>
+          <h3>Enter New Password</h3>
           <form method="post">
             <input
               type="text"
-              name="email"
-              placeholder="Example@gmail.com"
+              name="password"
+              placeholder="Enter New Password"
               onChange={setInfor}
             />
-            <input type="submit" onClick={signup_submit} value="Send" />
+            <input type="submit" value="Reset Now" onClick={signup_submit} />
           </form>
         </div>
       </div>
     </>
   );
 };
-
-export default Resetpass;
+export default Changepassword;

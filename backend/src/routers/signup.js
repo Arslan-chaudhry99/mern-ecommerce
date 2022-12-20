@@ -6,6 +6,15 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 // to create a new user
+const secKey = process.env.SECRET_KEY;
+// create a email transport
+const transpoter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.gmail, // generated ethereal user
+    pass: process.env.password, // generated ethereal password
+  },
+});
 router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
   const findEmail = await Signupuser.findOne({ email: email });
@@ -95,24 +104,34 @@ router.post("/logout", (req, res) => {
 });
 
 // reset from outer
-router.post("/ResetPass", async (req, res) => {
+router.post("/sendpasswordlink", async (req, res) => {
   const { email } = req.body;
-  let authentication = await Signupuser.find({ email: email });
-
+  let findUser = await Signupuser.findOne({ email: email });
+  if (!findUser) {
+    console.log("length is zero");
+    return res.status(400).json({ error: "User not found" });
+  }
+  //  generating token to reset passowrd
   try {
-    if (authentication !== 0) {
-      const transpoter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: process.env.gmail, // generated ethereal user
-          pass: process.env.password, // generated ethereal password
-        },
-      });
+    const token = jwt.sign({ _id: findUser._id }, secKey, {
+      expiresIn: "1d",
+    });
+
+    const setToken = await Signupuser.findByIdAndUpdate(
+      { _id: findUser._id },
+      { veryfiyuser: token },
+      { new: true }
+    );
+
+    if (setToken) {
       const mailOpctions = {
         from: process.env.gmail,
         to: email,
-        subject: "Mobilows",
-        html: "<p>Your OTP is:<strong>21345</strong></p>",
+        subject: "Mobilows(Password reset)",
+        html: `<h5>Your Password Link is:</h5><br />
+        <h5><span style="color:'red'">Note:</span>Link will expire In next 4 mins.</h5>
+        http://localhost:3000/change_password_now/${findUser._id}/${setToken.veryfiyuser}
+        `,
       };
       transpoter.sendMail(mailOpctions, (error, info) => {
         if (error) {
@@ -127,13 +146,6 @@ router.post("/ResetPass", async (req, res) => {
         }
       });
     }
-    return res.status(200).json({
-      success: "not possible",
-    });
-  } catch (error) {
-    return res.status(500).json({
-      error: "Error 505.",
-    });
-  }
+  } catch (error) {}
 });
 module.exports = router;
