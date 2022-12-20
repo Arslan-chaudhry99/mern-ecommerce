@@ -17,6 +17,7 @@ const Resetpass = () => {
       return alert("confom password not the same.");
     }
     let res = await axios.post("/ResetPass", Reset);
+    console.log(await res);
   };
   return (
     <>

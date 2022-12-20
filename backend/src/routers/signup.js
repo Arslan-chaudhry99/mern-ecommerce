@@ -95,14 +95,45 @@ router.post("/logout", (req, res) => {
 });
 
 // reset from outer
-router.post("/ResetPass", (req, res) => {
+router.post("/ResetPass", async (req, res) => {
   const { email } = req.body;
+  let authentication = await Signupuser.find({ email: email });
+
   try {
-    const transpoter = nodemailer.createTransport({
-      service: "gmail",
-      auth: "arslanchaudhry9011@gmail.com",
-      pass:""
+    if (authentication !== 0) {
+      const transpoter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: process.env.gmail, // generated ethereal user
+          pass: process.env.password, // generated ethereal password
+        },
+      });
+      const mailOpctions = {
+        from: process.env.gmail,
+        to: email,
+        subject: "Mobilows",
+        html: "<p>Your OTP is:<strong>21345</strong></p>",
+      };
+      transpoter.sendMail(mailOpctions, (error, info) => {
+        if (error) {
+          return res.status(500).json({
+            error: "Error 505.contact with chaudhry.",
+          });
+        } else {
+          return res.status(200).json({
+            success:
+              "Reset password link has been send to your email successfuly.",
+          });
+        }
+      });
+    }
+    return res.status(200).json({
+      success: "not possible",
     });
-  } catch (error) {}
+  } catch (error) {
+    return res.status(500).json({
+      error: "Error 505.",
+    });
+  }
 });
 module.exports = router;
