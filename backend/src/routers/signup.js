@@ -104,6 +104,26 @@ router.post("/logout", (req, res) => {
 });
 
 // reset from outer
+router.post("/changePassword", async (req, res) => {
+  const { password, id, token } = req.body;
+  try {
+    let findUser = await Signupuser.findOne({ _id: id, veryfiyuser: token });
+
+    const veryfiyToken = jwt.verify(token, secKey);
+    if (findUser && veryfiyToken._id) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPass = await bcrypt.hash(password, salt);
+      const setToken = await Signupuser.findByIdAndUpdate(
+        { _id: id },
+        { password: hashedPass },
+        { new: true }
+      );
+      console.log(setToken);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
 router.post("/sendpasswordlink", async (req, res) => {
   const { email } = req.body;
   let findUser = await Signupuser.findOne({ email: email });
@@ -114,7 +134,7 @@ router.post("/sendpasswordlink", async (req, res) => {
   //  generating token to reset passowrd
   try {
     const token = jwt.sign({ _id: findUser._id }, secKey, {
-      expiresIn: "1d",
+      expiresIn: "300s",
     });
 
     const setToken = await Signupuser.findByIdAndUpdate(

@@ -17,8 +17,9 @@ const Changepassword = () => {
   };
   const signup_submit = async (event) => {
     event.preventDefault();
-    const { email } = Reset;
-    if (!email || !id || !token) {
+    const { password, id, token } = Reset;
+    if (!password || !id || !token) {
+      console.log(Reset);
       return alert("Please enter password before continue");
     }
     let res = await axios.post("/changePassword", Reset);
