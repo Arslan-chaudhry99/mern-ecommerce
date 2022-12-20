@@ -4,6 +4,7 @@ require("../DB/db");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 // to create a new user
 router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
@@ -93,4 +94,15 @@ router.post("/logout", (req, res) => {
     .json({ message: "Logout Successfully" });
 });
 
+// reset from outer
+router.post("/ResetPass", (req, res) => {
+  const { email } = req.body;
+  try {
+    const transpoter = nodemailer.createTransport({
+      service: "gmail",
+      auth: "arslanchaudhry9011@gmail.com",
+      pass:""
+    });
+  } catch (error) {}
+});
 module.exports = router;

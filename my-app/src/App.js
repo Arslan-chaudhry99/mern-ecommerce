@@ -14,6 +14,7 @@ import Login from "./Authentication/Login";
 import Cart from "./components/Cart";
 import Profile from "./components/Profile";
 import Fav from "./components/Fav";
+import Resetpass from "./components/Resetpass";
 import Editor from "./components/Editor";
 import Resetpassword from "./components/Resetpassword";
 import Error from "./components/Error";
@@ -41,6 +42,7 @@ function App() {
               </Route>
               <Route path="/Signup" element={<Signup />} />
               <Route path="/admin" element={<Login />} />
+              <Route path="/Resetpass" element={<Resetpass />} />
               <Route path="*" element={<Error />} />
             </>
           }
