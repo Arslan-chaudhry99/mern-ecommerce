@@ -41,7 +41,7 @@ function App() {
                 <Route path="/wishlist" element={<Fav />} />
                 <Route path="/Product/:name" element={<Product />} />
               </Route>
-             
+
               <Route path="/admin" element={<Login />} />
               <Route path="/reset_password_now" element={<Resetpass />} />
               <Route

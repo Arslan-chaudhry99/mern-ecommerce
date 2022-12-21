@@ -720,6 +720,7 @@ textarea.input {
     -ms-transform: translateX(0%);
     transform: translateX(0%);
     width: 100%;
+    z-index: 1001;
   }
   .main-nav {
     margin: 0px;

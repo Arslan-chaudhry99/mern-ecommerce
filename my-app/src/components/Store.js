@@ -4,10 +4,13 @@ import "./css/Store.css";
 import { getAllProductsData } from "../Action";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+
 import { useRef } from "react";
 import Filters from "./Filters/Filters";
 import ReactPaginate from "react-paginate";
 const Store = () => {
+  const navigate=useNavigate()
   const sidesWidth = useRef("");
   const { Extquery } = useParams();
   const [Actual, setActual] = useState([]);
@@ -23,6 +26,9 @@ const Store = () => {
   const handleChange = (e) => {
     name = e.target.value;
     value = e.target.name;
+    if (Extquery !== undefined) {
+      navigate("/store")
+    }
     setServerData({ [e.target.name]: e.target.value });
     var options = document.querySelectorAll("option");
     for (var i = 0, l = options.length; i < l; i++) {
@@ -61,7 +67,11 @@ const Store = () => {
 
   useEffect(() => {
     dispatch(getAllProductsData(ServerData, 0));
+    if (Extquery !== undefined) {
+      setServerData({ BrandName: Extquery });
+    }
   }, []);
+  console.log(ServerData);
   useEffect(() => {
     dispatch(getAllProductsData(ServerData, 0));
   }, [ServerData]);
