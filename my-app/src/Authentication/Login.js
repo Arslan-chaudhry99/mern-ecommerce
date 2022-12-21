@@ -3,6 +3,8 @@ import "./Login.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 const Login = () => {
   // acess cookies
@@ -22,12 +24,32 @@ const Login = () => {
   // login request
   const Login_Now = async (e) => {
     e.preventDefault();
+    const id = toast.loading("Please wait...");
     const res = await axios.post("/admin", userInfo);
+    console.log(res);
     if ((await res).status === 200) {
-      setTimeout(() => {
+      toast.update(id, {
+        render: res.data.message,
+        type: "Success",
+        isLoading: false,
+        autoClose: 4000,
+        closeOnClick: true,
+        draggable: true,
+      });
+      return setTimeout(() => {
         navigate("/Editor");
         window.location.reload();
       }, 1000);
+    }
+    else{
+     return toast.update(id, {
+        render: res.data.message,
+        type: "error",
+        isLoading: false,
+        autoClose: 4000,
+        closeOnClick: true,
+        draggable: true,
+      });
     }
   };
   // go to main
@@ -39,6 +61,19 @@ const Login = () => {
   };
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        limit={1}
+      />
       {!auth ? (
         <>
           <div id="login-box1">
