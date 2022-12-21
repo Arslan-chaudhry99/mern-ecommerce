@@ -34,6 +34,9 @@ const Login = () => {
   const gotoEditor = () => {
     navigate("/Editor");
   };
+  const goToRecover = () => {
+    navigate("/reset_password_now");
+  };
   return (
     <>
       {!auth ? (
@@ -56,7 +59,7 @@ const Login = () => {
                 />
                 <div className="forgotpass">
                   <a>
-                    <strong>Recover Password</strong>
+                    <strong onClick={goToRecover}>Recover Password</strong>
                   </a>
                 </div>
                 <input

@@ -3,6 +3,9 @@ import "./css/Aditor.css";
 import { useState } from "react";
 import axios from "axios";
 import Authnav from "./Authnav";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Editor = () => {
   const [PostData, setPostData] = useState({
     ProductName: "",
@@ -56,7 +59,7 @@ const Editor = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    const id = toast.loading("Please wait...");
     const formData = new FormData();
 
     formData.append("ProductName", PostData.ProductName);
@@ -119,9 +122,24 @@ const Editor = () => {
       .post("/createPost", formData)
       .then((res) => {
         console.log(res);
+        return toast.update(id, {
+          render: res.data.message,
+          type: "success",
+          isLoading: false,
+          autoClose: 4000,
+          closeOnClick: true,
+          draggable: true,
+        });
       })
       .catch((err) => {
-        console.log(err);
+        return toast.update(id, {
+          render: "Refresh and try again",
+          type: "error",
+          isLoading: false,
+          autoClose: 4000,
+          closeOnClick: true,
+          draggable: true,
+        });
       });
   };
 
@@ -146,6 +164,19 @@ const Editor = () => {
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        limit={1}
+      />
       <Authnav />
       <div className="col-md-12" style={{ marginBottom: "100px" }}>
         <div id="product-tab">

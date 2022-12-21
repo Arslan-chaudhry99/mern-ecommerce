@@ -92,7 +92,6 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
     network,
     pricing,
   } = req.body;
-  console.log(DarazLink);
   const newPostData = {
     ProductName: ProductName.toString().replaceAll(/\s/g, "-").toLowerCase(),
     Search: ProductName.toString().replaceAll(/\s/g, "").toLowerCase(),
@@ -152,8 +151,8 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
   const newPost = new Data(newPostData);
   newPost
     .save()
-    .then(() => res.json("post Added"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .then(() => res.status(201).json({ message: "Product Add Successfully" }))
+    .catch((err) => res.status(203).json({ message: "Try again." }));
 });
 
 router.get("/getProducts", async (req, res) => {

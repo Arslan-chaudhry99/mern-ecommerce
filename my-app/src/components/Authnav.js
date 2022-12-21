@@ -24,6 +24,11 @@ const Authnav = () => {
           </NavLink>
         </li>
         <li className="nav-item">
+          <NavLink to="/signup">
+            <a className="nav-link active">Add User</a>
+          </NavLink>
+        </li>
+        <li className="nav-item">
           <NavLink to="/">
             <a className="nav-link active">Home</a>
           </NavLink>

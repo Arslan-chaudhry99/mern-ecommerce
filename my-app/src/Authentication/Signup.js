@@ -4,6 +4,7 @@ import { increment } from "../Action";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import Authnav from "../components/Authnav";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 const Signup = () => {
@@ -47,6 +48,15 @@ const Signup = () => {
     } else {
       try {
         const res = await axios.post("/signup", signup);
+
+        return await toast.update(id, {
+          render: res.data.message,
+          type: res.status === 201 ? "Success" : "error",
+          isLoading: false,
+          autoClose: 4000,
+          closeOnClick: true,
+          draggable: true,
+        });
       } catch (error) {}
     }
   };
@@ -65,8 +75,9 @@ const Signup = () => {
         draggable
         pauseOnHover
         theme="dark"
+        limit={1}
       />
-
+      <Authnav />
       <div id="login-box">
         <div class="left">
           <h1>Add New User</h1>

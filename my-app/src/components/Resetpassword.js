@@ -2,6 +2,9 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import Authnav from "./Authnav";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Resetpassword = () => {
   const [Reset, setReset] = useState({
     Old: "",
@@ -16,15 +19,47 @@ const Resetpassword = () => {
   };
   const signup_submit = async (event) => {
     event.preventDefault();
+    const id = toast.loading("Please wait...");
     const { New, ReNew, Old, username } = Reset;
     if (New !== ReNew) {
-      return alert("confom password not the same.");
+      return toast.update(id, {
+        render: "Password and confirm password does not match",
+        type: "error",
+        isLoading: false,
+        autoClose: 4000,
+        closeOnClick: true,
+        draggable: true,
+      });
     }
+
     let res = await axios.post("/ResetPassword", { New, Old, username });
+
+    return await toast.update(id, {
+      render: res.data.message,
+      type: res.status === 200 ? "success" : "error",
+      isLoading: false,
+      autoClose: 4000,
+      closeOnClick: true,
+      draggable: true,
+    });
   };
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        limit={1}
+      />
       <Authnav />
+
       <div id="login-box1">
         <div class="left">
           <h1>Reset Password</h1>

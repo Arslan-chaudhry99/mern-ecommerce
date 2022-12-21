@@ -17,26 +17,33 @@ const transpoter = nodemailer.createTransport({
 });
 router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
-  const findEmail = await Signupuser.findOne({ email: email });
-  if (!findEmail) {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPass = await bcrypt.hash(password, salt);
-    const user = new Signupuser({
-      username: username,
-      email: email,
-      password: hashedPass,
-    });
-    const result = await user.save();
-  } else {
-    console.log("user already exist");
+  try {
+    const findEmail = await Signupuser.findOne({ email: email });
+    if (!findEmail) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPass = await bcrypt.hash(password, salt);
+      const user = new Signupuser({
+        username: username,
+        email: email,
+        password: hashedPass,
+      });
+      const result = await user.save();
+      console.log(result);
+      if (result) {
+        return res.status(201).json({ message: "User create Successfully" });
+      }
+    } else {
+      return res.status(203).json({ message: "User already exist." });
+    }
+  } catch (error) {
+    return res.status(500).json({ error: "Please Try again later." });
   }
 });
-// to reset password.
+// to reset password when user login.
 router.post("/ResetPassword", async (req, res) => {
   const { New, Old, username } = req.body;
   try {
     const findUser = await Signupuser.find({ username: username });
-
     if (findUser.length > 0) {
       const isMatch = await bcrypt.compare(Old, findUser[0].password);
       if (isMatch) {
@@ -56,15 +63,15 @@ router.post("/ResetPassword", async (req, res) => {
             .status(200)
             .json({ message: "Password update successfuly." });
         }
-        return res.status(200).json({ error: "Try again later." });
+        return res.status(205).json({ message: "Try again later." });
       }
 
-      return res.status(400).json({ error: "wrong credentials" });
+      return res.status(205).json({ message: "wrong credentials" });
     }
 
-    return res.status(400).json({ error: "wrong credentials" });
+    return res.status(203).json({ message: "wrong credentials" });
   } catch (error) {
-    return res.status(500).json({ error: "server error.Try again later!" });
+    return res.status(205).json({ message: "server error.Try again later!" });
   }
 });
 // to login a user
