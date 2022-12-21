@@ -10,7 +10,7 @@ import { useRef } from "react";
 import Filters from "./Filters/Filters";
 import ReactPaginate from "react-paginate";
 const Store = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const sidesWidth = useRef("");
   const { Extquery } = useParams();
   const [Actual, setActual] = useState([]);
@@ -27,7 +27,7 @@ const Store = () => {
     name = e.target.value;
     value = e.target.name;
     if (Extquery !== undefined) {
-      navigate("/store")
+      navigate("/store");
     }
     setServerData({ [e.target.name]: e.target.value });
     var options = document.querySelectorAll("option");

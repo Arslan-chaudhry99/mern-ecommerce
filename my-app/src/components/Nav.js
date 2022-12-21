@@ -91,7 +91,6 @@ const Nav = () => {
     "haier",
   ];
 
-
   return (
     <>
       <header>
@@ -234,11 +233,8 @@ const Nav = () => {
               {allNavElement.map((value) => {
                 return (
                   <>
-                    <NavLink to={"/store" }>
-                      <li
-                        className="nav-item"
-                        
-                      >
+                    <NavLink to={"/store/" + value}>
+                      <li className="nav-item">
                         <a className="MobilesNavigation">
                           {value.toLocaleUpperCase()}
                         </a>
