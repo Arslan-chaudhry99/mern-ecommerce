@@ -34,6 +34,8 @@ const Nav = () => {
   // main hooks
   const showMenu = useRef();
   const { name } = useParams();
+  console.log(name);
+  // Extquery
   const Navigate = useNavigate();
   // main hooks
   // <---for expanding navbar--->
@@ -158,7 +160,7 @@ const Nav = () => {
                 </div>
               </div>
 
-              <div className="col-md-3 clearfix">
+              <div className="col-md-4 clearfix">
                 <div className="header-ctn">
                   <div>
                     <a
@@ -179,11 +181,23 @@ const Nav = () => {
                       Navigate("/cart");
                     }}
                   >
-                    {/* <a style={{ cursor: "pointer" }}>
+                    <a style={{ cursor: "pointer" }}>
                       <i className="fa fa-shopping-cart"></i>
                       <span>Your Cart</span>
                       <div className="qty">3</div>
-                    </a> */}
+                    </a>
+                  </div>
+                  <div
+                    className=""
+                    onClick={() => {
+                      Navigate("/cart");
+                    }}
+                  >
+                    <a style={{ cursor: "pointer" }}>
+                      <i className="fa fa-shopping-cart"></i>
+                      <span>Your Cart</span>
+                      <div className="qty">3</div>
+                    </a>
                   </div>
 
                   <div className="menu-toggle" onClick={expandNav}>
@@ -220,31 +234,6 @@ const Nav = () => {
               </ul>
             </div>
           </div>
-        </nav>
-        <nav>
-          <ul className="MainDataValuesNavs container">
-            <Carousel
-              responsive={responsive}
-              className="container"
-              autoPlay={true}
-              interval={2000}
-              showArrows={false}
-            >
-              {allNavElement.map((value) => {
-                return (
-                  <>
-                    <NavLink to={"/store/" + value}>
-                      <li className="nav-item">
-                        <a className="MobilesNavigation">
-                          {value.toLocaleUpperCase()}
-                        </a>
-                      </li>
-                    </NavLink>
-                  </>
-                );
-              })}
-            </Carousel>
-          </ul>
         </nav>
       </header>
       {/* <!-- Button trigger modal --> */}
@@ -316,42 +305,7 @@ const Nav = () => {
                   </div>
                 </div>
 
-                {/* <div className="col-md-3 clearfix">
-                <div className="header-ctn">
-                  <div>
-                    <a
-                      onClick={() => {
-                        Navigate("/wishlist");
-                      }}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <i className="fa fa-heart-o"></i>
-                      <span>Your Wishlist</span>
-                      <div className="qty">2</div>
-                    </a>
-                  </div>
-
-                  <div
-                    className=""
-                    onClick={() => {
-                      Navigate("/cart");
-                    }}
-                  >
-                    <a style={{ cursor: "pointer" }}>
-                      <i className="fa fa-shopping-cart"></i>
-                      <span>Your Cart</span>
-                      <div className="qty">3</div>
-                    </a>
-                  </div>
-
-                  <div className="menu-toggle" onClick={expandNav}>
-                    <a>
-                      <i className="fa fa-bars"></i>
-                      <span>Menu</span>
-                    </a>
-                  </div>
-                </div>
-              </div> */}
+                
               </div>
             </div>
           </div>

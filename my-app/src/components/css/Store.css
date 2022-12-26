@@ -30,7 +30,6 @@
   overflow-y: scroll;
 }
 .btnsFiltersData {
-
   color: white;
   padding: 5px 15px;
   border-radius: 3px;
@@ -43,31 +42,44 @@
   border-radius: 5px;
   padding: 50px 10px 20px 10px;
 }
-.searchByNettwork{
+.searchByNettwork {
   background-color: #46b8da;
   border: 1px solid #46b8da;
-  color: white; 
+  color: white;
   border-radius: 4px;
   padding: 6px 10px;
   font-weight: 400;
   margin-top: 10px;
 }
-.currentBagesData{
+.currentBagesData {
   font-size: 20px;
 
   display: flex;
   justify-content: left;
   align-items: center;
 }
-.currentBagesData-1{
+.currentBagesData-1 {
   background-color: #16a085;
   padding: 5px 10px;
   color: white;
   font-size: 14px;
-border-radius: 2px;
+  border-radius: 2px;
 }
 
-.error_alert{
+.error_alert {
   width: 100%;
   margin-top: 10px;
+}
+.currentBagesData-2 {
+  margin-left: 20px;
+  background-color: #16a085;
+  padding: 5px 10px;
+  color: white;
+  font-size: 14px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.currentBagesData-2 span {
+  font-size: 14px;
+  margin-right: 3px;
 }

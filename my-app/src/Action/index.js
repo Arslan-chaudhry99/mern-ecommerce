@@ -1,6 +1,7 @@
 import axios from "axios";
 export const getAllProductsData = (names, page) => async (disatch) => {
-  console.log(Object.values(names)[0]);
+  // console.log(names);
+
   const res = await axios.get(
     `/getProducts?QueryName=${Object.keys(names)[0]}&QueryValues=${
       Object.values(names)[0]
@@ -18,7 +19,6 @@ export const getAllProductsData = (names, page) => async (disatch) => {
 // get main product data
 export const getMainData = (ids) => async (disatch) => {
   const res = await axios.get(`/getMainData?name=${ids}`);
-
   disatch({
     type: "getMainData",
     payload: res.data.data,
@@ -27,7 +27,7 @@ export const getMainData = (ids) => async (disatch) => {
 // get all prodyct reviews
 export const getAllReviews = (ids) => async (disatch) => {
   const res = await axios.get(`/getReviews?id=${ids}`);
-  console.log(res);
+  // console.log(res);
   disatch({
     type: "getAllReviews",
     payload: res.data.data,
@@ -42,5 +42,3 @@ export const findProducts = (value) => async (disatch) => {
     payload: res.data.data,
   });
 };
-
-

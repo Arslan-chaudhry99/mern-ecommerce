@@ -33,7 +33,7 @@ const Profile = () => {
                     </div>
                     <div className="card mt-3"></div>
                     <dir>
-                     <span>Profile Setting</span>
+                      <span>Profile Setting</span>
                     </dir>
                   </div>
                   <div className="col-md-8">

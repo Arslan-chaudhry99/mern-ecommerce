@@ -6,6 +6,8 @@ const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 let path = require("path");
 let Data = require("../model/post");
+const cloudinary = require("cloudinary").v2;
+const streamifier = require("streamifier");
 
 const DIR = "./public/img";
 const storage = multer.diskStorage({
@@ -158,12 +160,15 @@ router.route("/createPost").post(upload.array("images", 20), (req, res) => {
 router.get("/getProducts", async (req, res) => {
   const QueryName = req.query.QueryName ? req.query.QueryName : "";
   const QueryValues = req.query.QueryValues ? req.query.QueryValues : "";
+  console.log(req.query);
   const page = req.query.page;
   const size = 10;
   const skip = page * size;
   if (QueryName !== "" && QueryValues !== "") {
     console.log("1*");
-    const total = await Post.find({ [QueryName]: QueryValues });
+    // const total = await Post.find({ [QueryName]: QueryValues });
+    const total = await Post.find(req.query);
+
     if (total.length === 0) {
       console.log("1,2*" + QueryName + QueryValues);
       return res.status(200).json({ data: total, total: 0 });

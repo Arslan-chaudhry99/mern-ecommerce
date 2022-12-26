@@ -26,9 +26,7 @@ const Store = () => {
   const handleChange = (e) => {
     name = e.target.value;
     value = e.target.name;
-    if (Extquery !== undefined) {
-      navigate("/store");
-    }
+
     setServerData({ [e.target.name]: e.target.value });
     var options = document.querySelectorAll("option");
     for (var i = 0, l = options.length; i < l; i++) {
@@ -67,15 +65,16 @@ const Store = () => {
 
   useEffect(() => {
     dispatch(getAllProductsData(ServerData, 0));
-    if (Extquery !== undefined) {
-      setServerData({ BrandName: Extquery });
-    }
   }, []);
-  console.log(ServerData);
+
   useEffect(() => {
     dispatch(getAllProductsData(ServerData, 0));
   }, [ServerData]);
 
+  const clearFilters = () => {
+    setServerData({ "": "" });
+    setQuery({ nameing: "" });
+  };
   return (
     <>
       <div class="section">
@@ -188,6 +187,14 @@ const Store = () => {
                 {Query.nameing}
                 <i class="fa fa-filter" aria-hidden="true"></i>
               </div>
+              {Query.nameing !== "" ? (
+                <div className="currentBagesData-2" onClick={clearFilters}>
+                  <span>Clear Filter</span>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
             <div
               id="store"
@@ -207,8 +214,8 @@ const Store = () => {
                         style={{ marginRight: "20px" }}
                       >
                         <div class="product-img">
-                          {/* <i class="fa fa-heart-o"></i> */}
-                          {/* <span className="CartTagLine">new</span> */}
+                          <i class="fa fa-heart-o"></i>
+                          <span className="CartTagLine">new</span>
                           <img
                             src={value.images[0]}
                             alt="image"
@@ -229,9 +236,9 @@ const Store = () => {
                             </del>
                           </h4>
 
-                          {/* <button class="add-to-cart-btn">
-                              <i class="fa fa-shopping-cart"></i> add to cart
-                            </button> */}
+                          <button class="add-to-cart-btn">
+                            <i class="fa fa-shopping-cart"></i> add to cart
+                          </button>
                         </div>
                       </div>
                     </>
