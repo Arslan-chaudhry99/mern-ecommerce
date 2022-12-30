@@ -2,7 +2,7 @@
   position: relative;
   margin: 3% auto;
   width: 400px;
-  height: 350px;
+  height: 430px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -65,6 +65,7 @@ input[type="password"]:focus {
 }
 
 input[type="submit"] {
+  margin-top: 53px;
   width: 120px;
   height: 32px;
   background: #16a085;
@@ -168,4 +169,6 @@ button.social-signin.google {
 .forgotpass {
   margin-bottom: 10px;
   cursor: pointer;
+  float: right;
+
 }

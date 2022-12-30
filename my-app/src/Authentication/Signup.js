@@ -111,8 +111,8 @@ const Signup = () => {
             />
             <input type="submit" onClick={signUpUser} value="Add now!" />
           </form>
-          {/* <div class="or">OR</div> */}
-          {/* <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <div class="or">OR</div>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
             <button class="social-signin facebook">
               <i class="fa fa-facebook"></i>
             </button>
@@ -122,7 +122,7 @@ const Signup = () => {
             <button class="social-signin google">
               <i class="fa fa-google"></i>
             </button>
-          </div> */}
+          </div>
         </div>
       </div>
     </>

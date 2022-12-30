@@ -100,14 +100,17 @@ const Main = () => {
                       </h3>
                       <h4 class="product-price">
                         ${values.DollarPrice}.00
-                        {/* <del class="product-old-price" style={{ color: "#dc3545" }}>
-                      $990.00
-                    </del> */}
+                        <del
+                          class="product-old-price"
+                          style={{ color: "#dc3545" }}
+                        >
+                          $990.00
+                        </del>
                       </h4>
 
-                      {/* <button class="add-to-cart-btn">
-                    <i class="fa fa-shopping-cart"></i> add to cart
-                  </button> */}
+                      <button class="add-to-cart-btn">
+                        <i class="fa fa-shopping-cart"></i> add to cart
+                      </button>
                     </div>
                   </div>
                 </NavLink>

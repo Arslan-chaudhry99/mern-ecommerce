@@ -78,7 +78,7 @@ const Login = () => {
         <>
           <div id="login-box1">
             <div class="left">
-              <h1>Login Admin</h1>
+              <h1>Login Now!</h1>
               <form method="post">
                 <input
                   type="text"
@@ -104,7 +104,7 @@ const Login = () => {
                   onClick={Login_Now}
                 />
               </form>
-              {/* <div class="or">OR</div>
+              <div class="or">OR</div>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <button class="social-signin facebook">
               <i class="fa fa-facebook"></i>
@@ -115,7 +115,7 @@ const Login = () => {
             <button class="social-signin google">
               <i class="fa fa-google"></i>
             </button>
-          </div> */}
+          </div>
             </div>
           </div>
         </>

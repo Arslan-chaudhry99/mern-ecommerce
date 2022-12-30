@@ -40,9 +40,10 @@ function App() {
                 <Route path="/Profile" element={<Profile />} />
                 <Route path="/wishlist" element={<Fav />} />
                 <Route path="/Product/:name" element={<Product />} />
+                <Route path="/Signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
               </Route>
 
-              <Route path="/admin" element={<Login />} />
               <Route path="/reset_password_now" element={<Resetpass />} />
               <Route
                 path="/change_password_now/:id/:token"

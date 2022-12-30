@@ -166,9 +166,8 @@ router.get("/getProducts", async (req, res) => {
   const skip = page * size;
   if (QueryName !== "" && QueryValues !== "") {
     console.log("1*");
-    // const total = await Post.find({ [QueryName]: QueryValues });
-    const total = await Post.find(req.query);
-
+    const total = await Post.find({ [QueryName]: QueryValues });
+    console.log(total.length);
     if (total.length === 0) {
       console.log("1,2*" + QueryName + QueryValues);
       return res.status(200).json({ data: total, total: 0 });

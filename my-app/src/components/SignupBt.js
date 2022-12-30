@@ -21,22 +21,22 @@ const SignupBt = () => {
                 </form>
                 <ul class="newsletter-follow">
                   <li>
-                    <a >
+                    <a>
                       <i class="fa fa-facebook"></i>
                     </a>
                   </li>
                   <li>
-                    <a >
+                    <a>
                       <i class="fa fa-twitter"></i>
                     </a>
                   </li>
                   <li>
-                    <a >
+                    <a>
                       <i class="fa fa-instagram"></i>
                     </a>
                   </li>
                   <li>
-                    <a >
+                    <a>
                       <i class="fa fa-pinterest"></i>
                     </a>
                   </li>

@@ -9,8 +9,11 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import "./css/Nav.css";
 const Nav = () => {
+  const auth = Cookies.get("userToken");
+
   // brand slider
   const responsive = {
     superLargeDesktop: {
@@ -115,7 +118,7 @@ const Nav = () => {
                 </a>
               </li>
             </ul>
-            {/* <ul className="header-links pull-right">
+            <ul className="header-links pull-right">
               <li>
                 <select name="" id="" className="slectAcurrency">
                   <option value="">Select Currency</option>
@@ -123,16 +126,32 @@ const Nav = () => {
                   <option value="Rupee">Rupee </option>
                 </select>
               </li>
-              <li style={{ cursor: "pointer" }}>
-                <a
-                  onClick={() => {
-                    Navigate("/Profile");
-                  }}
-                >
-                  <i className="fa fa-user-o"></i> My Account
-                </a>
-              </li>
-            </ul> */}
+              {!auth ? (
+                  <NavLink to="/login">
+                <li style={{ cursor: "pointer" }}>
+                  <a
+                    onClick={() => {
+                      Navigate("/Profile");
+                    }}
+                  >
+                   
+                    <i className="fa fa-user-o">Login Now!</i>
+                   
+                  </a>
+                </li>
+                </NavLink>
+              ) : (
+                <li style={{ cursor: "pointer" }}>
+                  <a
+                    onClick={() => {
+                      Navigate("/Profile");
+                    }}
+                  >
+                    <i className="fa fa-user-o"></i> My Account
+                  </a>
+                </li>
+              )}
+            </ul>
           </div>
         </div>
         <div id="header">
@@ -145,11 +164,6 @@ const Nav = () => {
                   data-target="#exampleModal"
                 >
                   <form>
-                    {/* <select className="input-select">
-                      <option value="0">All Categories</option>
-                      <option value="1">Category 01</option>
-                      <option value="1">Category 02</option>
-                    </select> */}
                     <input
                       className="input"
                       placeholder="Search here"
@@ -304,8 +318,6 @@ const Nav = () => {
                     </div>
                   </div>
                 </div>
-
-                
               </div>
             </div>
           </div>
