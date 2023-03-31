@@ -9,9 +9,9 @@ app.use(cookieParser());
 app.use(express.json());
 const PORT = process.env.PORT || 5000;
 
-app.use(require("./routers/signup"));
-app.use(require("./routers/Post"));
-app.use(require("./routers/Reviews"));
+app.use(require("./controllers/signup"));
+app.use(require("./controllers/Post"));
+app.use(require("./controllers/Reviews"));
 
 app.listen(PORT, () => {
   console.log("running on 5000");

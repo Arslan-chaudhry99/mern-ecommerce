@@ -127,18 +127,18 @@ const Nav = () => {
                 </select>
               </li>
               {!auth ? (
-                  <NavLink to="/login">
-                <li style={{ cursor: "pointer" }}>
-                  <a
-                    onClick={() => {
-                      Navigate("/Profile");
-                    }}
-                  >
-                   
-                    <i className="fa fa-user-o">Login Now!</i>
-                   
-                  </a>
-                </li>
+                <NavLink to="/login">
+                  <li style={{ cursor: "pointer" }}>
+                    <a
+                      onClick={() => {
+                        Navigate("/Profile");
+                      }}
+                    >
+
+                      <i className="fa fa-user-o">Login Now!</i>
+
+                    </a>
+                  </li>
                 </NavLink>
               ) : (
                 <li style={{ cursor: "pointer" }}>
